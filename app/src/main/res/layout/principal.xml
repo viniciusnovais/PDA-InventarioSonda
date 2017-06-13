@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent">
+
+    <AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/AbsoluteLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/fundopreto"
+        tools:ignore="Deprecated">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_x="-2dp"
+            android:layout_y="0dp"
+            android:src="@drawable/pda"
+            tools:ignore="ContentDescription" />
+
+        <requestFocus
+            android:layout_x="1dp"
+            android:layout_y="231dp" />
+
+        <requestFocus
+            android:layout_x="186dp"
+            android:layout_y="299dp" />
+
+        <requestFocus
+            android:layout_x="160dp"
+            android:layout_y="283dp" />
+
+        <Button
+            android:id="@+id/btnAuditoria"
+            style="@style/AppTheme"
+            android:layout_width="176dp"
+            android:layout_height="93dp"
+            android:layout_x="3dp"
+            android:layout_y="313dp"
+            android:background="@drawable/selector_button"
+            android:drawableBottom="@drawable/contagem"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Auditoria"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnContagem"
+            style="@style/AppTheme"
+            android:layout_width="175dp"
+            android:layout_height="93dp"
+            android:layout_x="186dp"
+            android:layout_y="313dp"
+            android:background="@drawable/selector_button"
+            android:drawableBottom="@drawable/lista"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Contagem"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/ImageView04"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_x="177dp"
+            android:layout_y="412dp"
+            android:src="@drawable/vertical" />
+
+        <ImageView
+            android:id="@+id/ImageView05"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_x="177dp"
+            android:layout_y="570dp"
+            android:src="@drawable/vertical" />
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_x="177dp"
+            android:layout_y="311dp"
+            android:src="@drawable/vertical" />
+
+        <ImageView
+            android:id="@+id/ImageView01"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_x="2dp"
+            android:layout_y="303dp"
+            android:src="@drawable/linha" />
+
+        <ImageView
+            android:id="@+id/ImageView06"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_x="177dp"
+            android:layout_y="377dp"
+            android:src="@drawable/vertical" />
+
+        <ImageView
+            android:id="@+id/ImageView02"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_x="2dp"
+            android:layout_y="405dp"
+            android:src="@drawable/linha" />
+
+        <Button
+            android:id="@+id/btnDivergencia"
+            style="@style/AppTheme"
+            android:layout_width="176dp"
+            android:layout_height="93dp"
+            android:layout_x="2dp"
+            android:layout_y="416dp"
+            android:background="@drawable/selector_button"
+            android:drawableBottom="@drawable/divergencia"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Divergência"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/ImageView03"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_x="2dp"
+            android:layout_y="510dp"
+            android:src="@drawable/linha" />
+
+        <ImageView
+            android:id="@+id/ImageView07"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_x="177dp"
+            android:layout_y="483dp"
+            android:src="@drawable/vertical" />
+
+        <Button
+            android:id="@+id/btnExportacao"
+            style="@style/AppTheme"
+            android:layout_width="176dp"
+            android:layout_height="93dp"
+            android:layout_x="2dp"
+            android:layout_y="520dp"
+            android:background="@drawable/selector_button"
+            android:drawableBottom="@drawable/exportar2"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Exportação"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <ImageView
+            android:id="@+id/ImageView08"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_x="177dp"
+            android:layout_y="514dp"
+            android:src="@drawable/vertical" />
+
+        <Button
+            android:id="@+id/btnImportacao"
+            style="@style/AppTheme"
+            android:layout_width="175dp"
+            android:layout_height="93dp"
+            android:layout_x="186dp"
+            android:layout_y="522dp"
+            android:background="@drawable/selector_button"
+            android:drawableBottom="@drawable/importar"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Importação"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <Button
+            android:id="@+id/btnContFinal"
+            style="@style/AppTheme"
+            android:layout_width="175dp"
+            android:layout_height="93dp"
+            android:layout_x="186dp"
+            android:layout_y="417dp"
+            android:background="@drawable/selector_button"
+            android:drawableBottom="@drawable/contagemfinal"
+            android:shadowColor="#A8A8A8"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="5"
+            android:text="Cont. Final"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp"
+            tools:ignore="HardcodedText" />
+
+        <TextView
+            android:id="@+id/tvPendentes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_x="108dp"
+            android:layout_y="194dp"
+            android:text="Envios Pendentes -"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textColor="@android:color/white"
+            tools:ignore="HardcodedText" />
+
+    </AbsoluteLayout>
+</ScrollView>

@@ -1,0 +1,35 @@
+apply plugin: 'com.android.application'
+
+android {
+    aaptOptions.cruncherEnabled = false
+    aaptOptions.useNewCruncher = false
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+
+    defaultConfig {
+        applicationId "com.example.pda_inventario"
+        minSdkVersion 9
+        targetSdkVersion 25
+        multiDexEnabled true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}
+
+dependencies {
+    compile 'com.android.support:multidex:1.0.1'
+    compile 'com.android.support:appcompat-v7:23.4.0'
+    compile 'com.android.support:gridlayout-v7:23.4.0'
+    compile 'com.android.support:support-v4:23.4.0'
+    compile files('libs/commons-compress-1.11-javadoc.jar')
+    compile files('libs/commons-compress-1.11.jar')
+    compile files('libs/ksoap2-android-assembly-3.5.0-jar-with-dependencies.jar')
+    compile 'com.google.android.gms:play-services-appindexing:8.4.0'
+    compile 'com.android.support:design:25.1.1'
+}

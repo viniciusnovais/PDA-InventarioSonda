@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name" translatable="false">PDA-Inventario</string>
+    <string name="hello_world" translatable="false">Hello world!</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="inventario_exit" translatable="false">Deseja sair do sistema ?</string>
+    <string name="inventario_cancel" translatable="false">Cancelar</string>
+    <string name="inventario_ok" translatable="false">OK</string>
+    <string name="inventario_blank" translatable="false">...</string>
+    <string name="login_ivDescription" translatable="false">Logo</string>
+    <string name="login_tvUsuario" translatable="false">Usuário</string>
+    <string name="login_tvUsuarioHint" translatable="false">Digite o usuário</string>
+    <string name="login_tvPassword" translatable="false">Senha</string>
+    <string name="login_tvPasswordHint" translatable="false">Digite a senha</string>
+    <string name="login_btnEnter" translatable="false">Entrar</string>
+    <string name="login_btnCancel" translatable="false">Sair</string>
+    <string name="autorizacao_btnLimparColetor" translatable="false">Limpar Coletor</string>
+    <string name="autorizacao_tvAutorizacao" translatable="false">Autorização</string>
+    <string name="autorizacao_tvAutorizacaoHint" translatable="false">Digite a autorização</string>
+    <string name="autorizacao_tvUserLabel" translatable="false">Nome usuário</string>
+    <string name="title_activity_contagem" translatable="false">ContagemActivity</string>
+	<string name="contagem_etEnderecoHint" translatable="false">Abra um endereço</string>
+	<string name="contagem_tvEndereco" translatable="false">Endereço: </string>
+	<string name="contagem_tvDepartamento" translatable="false">Departamento: </string>
+	<string name="contagem_tvSetor" translatable="false">Setor: </string>
+	<string name="contagem_tvProduto" translatable="false">Produto: </string>
+	<string name="contagem_tvQuantidade" translatable="false">Quantidade </string>
+	<string name="principal_tvPendentes" translatable="false">Envios Pendentes: </string>
+	<string name="principal_btnAuditoria" translatable="false">Auditoria</string>
+	<string name="principal_btnContagem" translatable="false">Contagem</string>
+	<string name="principal_btnDivergencia" translatable="false">Divergência</string>
+	<string name="principal_btnContFinal" translatable="false">Cont. Final</string>
+	<string name="principal_btnExportacao" translatable="false">Exportação</string>
+	<string name="principal_btnImportacao" translatable="false">Importação</string>
+    <string name="endereco">Endereço: </string>
+    <string name="departamento">Departamento:</string>
+    <string name="setor">Setor:</string>
+    <string name="fechar">Fechar</string>
+    <string name="excluir">Excluir</string>
+    <string name="zerar">Zerar</string>
+    <string name="produto">Produto: </string>
+    <string name="envio">Envios Pendentes:</string>
+</resources>

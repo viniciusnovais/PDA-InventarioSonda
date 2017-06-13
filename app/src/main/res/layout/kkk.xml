@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/AbsoluteLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/fundopreto"
+    tools:ignore="Deprecated" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_x="-2dp"
+        android:layout_y="0dp"
+        android:src="@drawable/pda"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/tvTituloTela"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="139dp"
+        android:layout_y="109dp"
+        android:textColor="@android:color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvEndereco"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="90dp"
+        android:layout_y="111dp"
+        android:text="Auditoria de Preço"
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView01"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="12dp"
+        android:layout_y="153dp"
+        android:text="Produto: "
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <EditText
+        android:id="@+id/etUser"
+        android:layout_width="229dp"
+        android:layout_height="wrap_content"
+        android:layout_x="105dp"
+        android:layout_y="158dp"
+        android:background="@android:color/white"
+        android:backgroundTint="@color/switch_thumb_normal_material_dark"
+        android:backgroundTintMode="add"
+        android:ems="10"
+        android:inputType="text"
+        android:textColor="@android:color/black"
+        tools:ignore="UnusedAttribute" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/TextView02"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="218dp"
+        android:text="Descrição:	..."
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView03"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="263dp"
+        android:text="Preço:	..."
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView04"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="308dp"
+        android:text="Qtde Venda:	..."
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView05"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="353dp"
+        android:text="Qtde S/ Venda:	..."
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView06"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="398dp"
+        android:text="Idade:	..."
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/TextView07"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="13dp"
+        android:layout_y="443dp"
+        android:text="Estoque:	..."
+        android:textColor="@android:color/white"
+        android:textSize="22sp"
+        tools:ignore="HardcodedText" />
+
+    <ImageView
+        android:id="@+id/ImageView01"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_x="1dp"
+        android:layout_y="520dp"
+        android:src="@drawable/linha" />
+
+    <ImageView
+        android:id="@+id/ImageView06"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_x="185dp"
+        android:layout_y="590dp"
+        android:src="@drawable/vertical" />
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:layout_x="185dp"
+        android:layout_y="521dp"
+        android:src="@drawable/vertical" />
+
+    <Button
+        android:id="@+id/btnFechar"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_x="10dp"
+        android:layout_y="543dp"
+        android:background="@drawable/selector_button"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Reposição"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
+
+    <Button
+        android:id="@+id/Button01"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_x="207dp"
+        android:layout_y="543dp"
+        android:background="@drawable/selector_button"
+        android:shadowColor="#A8A8A8"
+        android:shadowDx="0"
+        android:shadowDy="0"
+        android:shadowRadius="5"
+        android:text="Similares"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        tools:ignore="HardcodedText" />
+
+</AbsoluteLayout>
