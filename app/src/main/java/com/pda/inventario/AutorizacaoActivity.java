@@ -111,8 +111,8 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         Intent intent = getIntent();
         objUsuarioLogado = (UsuarioEO) intent.getSerializableExtra("UsuarioEO");
 
-        objUsuarioLogado = new UsuarioEO();
-        objUsuarioLogado.setNome(getIntent().getExtras().getString("login"));
+        //objUsuarioLogado = new UsuarioEO();
+        //objUsuarioLogado.setNome(getIntent().getExtras().getString("login"));
         objUsuarioLogado.setCodigo(1);
         objUsuarioLogado.setCodigoPerfil(1);
 
