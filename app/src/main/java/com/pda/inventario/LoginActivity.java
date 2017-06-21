@@ -170,8 +170,8 @@ public class LoginActivity extends AppCompatActivity {
 
         //SoapObject soap = new SoapObject("http://10.0.2.2/WsPDA/", "GetAutenticacao");
 
-        String SOAP_ACTION = "http://tempuri.org/GetAutenticacao";
-        String METHOD_NAME = "GetAutenticacao";
+        String SOAP_ACTION = "http://tempuri.org/Login";
+        String METHOD_NAME = "Login";
         String NAMESPACE = "http://tempuri.org/";
         //String URL = "http://179.184.159.52/wsandroid/autenticacao.asmx";
         String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsautenticacao.asmx";
