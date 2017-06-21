@@ -2,7 +2,8 @@ package com.pda.inventario;
 
 public class StringUtils {
 	static public String SERVIDOR = "179.184.159.52";
-	static public String DIRETORIO_VIRTUAL = "wsandroid";
+	//static public String DIRETORIO_VIRTUAL = "wsandroid";
+	static public String DIRETORIO_VIRTUAL = "";
 	static public String FILIAL = "-1";
 	
 	static final public String FIRST_CONFIG = "É necessário realizar a configuração inicial.";

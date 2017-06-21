@@ -28,7 +28,7 @@ public class ConfiguracaoActivity extends Activity {
 	    setContentView(R.layout.configuracao);
 	    
 	    etServidor = (EditText)findViewById(R.id.etServer);
-	    etDir = (EditText)findViewById(R.id.etDiretorio);
+	   	etDir = (EditText)findViewById(R.id.etDiretorio);
 	    etFilial = (EditText)findViewById(R.id.etFilial);
 	    
 	    etServidor.setText(StringUtils.SERVIDOR);
@@ -41,7 +41,8 @@ public class ConfiguracaoActivity extends Activity {
 	    
 	    btnOK.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
-				if (etServidor.getText().toString().equals("") || etDir.getText().toString().equals("") || etFilial.getText().toString().equals(""))
+				if (etServidor.getText().toString().equals("") 
+						|| etFilial.getText().toString().equals(""))
 				{
 					Toast.makeText(getApplicationContext(), StringUtils.BLANK_FIELD, Toast.LENGTH_SHORT).show();
 				}
