@@ -178,8 +178,8 @@ public class LoginActivity extends AppCompatActivity {
 
         try {
             SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            Request.addProperty("login_", user);
-            Request.addProperty("senha_", password);
+            Request.addProperty("_login", user);
+            Request.addProperty("_senha", password);
 
             SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             soapEnvelope.implicitTypes = true;
