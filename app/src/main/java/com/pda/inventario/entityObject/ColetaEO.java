@@ -11,7 +11,7 @@ public class ColetaEO implements KvmSerializable{
     public String CodigoBarra;
     public int QuantidadeContagem;
     public int IdInventario;
-    public int IdEndereco;
+    public String IdEndereco;
     public String DataColeta;
     public int MetodoColeta;
     public int TipoAtividade;
@@ -31,7 +31,7 @@ public class ColetaEO implements KvmSerializable{
     	CodigoBarra = "";
     	QuantidadeContagem = 0;
     	IdInventario = 0;
-    	IdEndereco = 0;
+    	IdEndereco = "";
     	DataColeta = "";
     	MetodoColeta = 0;
     	TipoAtividade = 0;
@@ -47,7 +47,7 @@ public class ColetaEO implements KvmSerializable{
         MetodoLeitura = 0;
 	}
 	
-    public ColetaEO(int idColeta, String codigoBarra, int quantidadeContagem, int idInventario, int idEndereco, String dataColeta, int metodoColeta, int tipoAtividade, int export, String codigoProduto, 
+    public ColetaEO(int idColeta, String codigoBarra, int quantidadeContagem, int idInventario, String idEndereco, String dataColeta, int metodoColeta, int tipoAtividade, int export, String codigoProduto,
     		String descricaoProduto, int metodoAuditoria, String timeStamp, int preco, String validade, int qtdeDivPreco, int idUsuario, int metodoLeitura){
     	IdColeta = idColeta;
     	CodigoBarra = codigoBarra;
@@ -212,7 +212,7 @@ public class ColetaEO implements KvmSerializable{
 			IdInventario = Integer.parseInt(value.toString());
 			break;
 		case 4:
-			IdEndereco = Integer.parseInt(value.toString());
+			IdEndereco =value.toString();
 			break;
 		case 5:
 			DataColeta = value.toString();

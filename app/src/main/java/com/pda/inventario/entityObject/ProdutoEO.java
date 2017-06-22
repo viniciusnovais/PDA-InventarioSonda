@@ -8,10 +8,11 @@ public class ProdutoEO {
     private float Preco;
     private float Quantidade;
     private int Coleta;
+	private String PPV;
     
     public ProdutoEO(){}
     
-    public ProdutoEO(int idProduto, String codAutomacao, String codSku, String descSku, float preco, float quantidade, int coleta){
+    public ProdutoEO(int idProduto, String codAutomacao, String codSku, String descSku, float preco, float quantidade, int coleta,String ppv){
     	IdProduto = idProduto;
     	CodAutomacao = codAutomacao;
         CodSku = codSku;
@@ -19,6 +20,7 @@ public class ProdutoEO {
         Preco = preco;
         Quantidade = quantidade;
         Coleta = coleta;
+		PPV = ppv;
     }
     
     public int getIdProduto() {
@@ -70,5 +72,12 @@ public class ProdutoEO {
 	public void setColeta(int coleta) {
 		Coleta = coleta;
 	}
-    
+
+	public String getPPV() {
+		return PPV;
+	}
+
+	public void setPPV(String PPV) {
+		this.PPV = PPV;
+	}
 }

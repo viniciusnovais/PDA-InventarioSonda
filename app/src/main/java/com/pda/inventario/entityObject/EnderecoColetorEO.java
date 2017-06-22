@@ -13,7 +13,7 @@ import android.text.format.DateFormat;
 public class EnderecoColetorEO implements KvmSerializable{
 
 	public int IdInventario;
-	public int IdEndereco;
+	public String IdEndereco;
 	public int IdDepartamento;
 	public int IdSetor;
 	public int IdMetodoContagem;
@@ -30,7 +30,7 @@ public class EnderecoColetorEO implements KvmSerializable{
 
 	public EnderecoColetorEO(){
 		IdInventario = 0;
-		IdEndereco = 0;
+		IdEndereco = "";
 		IdDepartamento = 0;
 		IdSetor = 0;
 		IdMetodoContagem = 0;
@@ -46,7 +46,7 @@ public class EnderecoColetorEO implements KvmSerializable{
 		MetodoLeitura = "";
 	}
 
-	public EnderecoColetorEO(int idInventario, int idEndereco, int idDepartamento, int idSetor, int idMetodoContagem, int idMetodoAuditoria, int idMetodoLeitura, String endereco, String departamento, String setor, String metodoContagem, String metodoAuditoria, int quantidade, Date dataHora, String metodoLeitura){
+	public EnderecoColetorEO(int idInventario, String idEndereco, int idDepartamento, int idSetor, int idMetodoContagem, int idMetodoAuditoria, int idMetodoLeitura, String endereco, String departamento, String setor, String metodoContagem, String metodoAuditoria, int quantidade, Date dataHora, String metodoLeitura){
 		IdInventario = idInventario;
 		IdEndereco = idEndereco;
 		IdDepartamento = idDepartamento;
@@ -180,7 +180,7 @@ public class EnderecoColetorEO implements KvmSerializable{
 			IdInventario = Integer.parseInt(value.toString());
 			break;
 		case 1:
-			IdEndereco = Integer.parseInt(value.toString());
+			IdEndereco = value.toString();
 			break;
 		case 2:
 			IdDepartamento = Integer.parseInt(value.toString());

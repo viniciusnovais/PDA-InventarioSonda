@@ -67,11 +67,11 @@ public class ColetaBC {
 			Cursor cursor = bd.query("PDA_TB_ITEM_COLETA", null, "ID_ENDERECO = ? AND EXPORT = ?" ,argsWhere, null, null, null);
 			while(cursor.moveToNext()){
 				objColeta = new ColetaEO();
-				objColeta.IdEndereco = cursor.getInt(0);
+				objColeta.IdEndereco = cursor.getString(0);
 				objColeta.CodigoBarra = cursor.getString(1);
 				objColeta.QuantidadeContagem = cursor.getInt(2);
 				objColeta.IdInventario = cursor.getInt(3);
-				objColeta.IdEndereco = cursor.getInt(4);
+				objColeta.IdEndereco = cursor.getString(0);
 				objColeta.DataColeta = cursor.getString(5);
 				objColeta.MetodoColeta = cursor.getInt(6);
 				objColeta.TipoAtividade = cursor.getInt(7);
@@ -216,11 +216,11 @@ public class ColetaBC {
 			Cursor cursor = bd.query("PDA_TB_ITEM_COLETA", null, "ID_INVENTARIO = ? AND EXPORT = ?" ,argsWhere, null, null, null);
 			while(cursor.moveToNext()){
 				objColeta = new ColetaEO();
-				objColeta.IdEndereco = cursor.getInt(0);
+				objColeta.IdEndereco = cursor.getString(0);
 				objColeta.CodigoBarra = cursor.getString(1);
 				objColeta.QuantidadeContagem = cursor.getInt(2);
 				objColeta.IdInventario = cursor.getInt(3);
-				objColeta.IdEndereco = cursor.getInt(4);
+				objColeta.IdEndereco = cursor.getString(4);
 				objColeta.DataColeta = cursor.getString(5);
 				objColeta.MetodoColeta = cursor.getInt(6);
 				objColeta.TipoAtividade = cursor.getInt(7);

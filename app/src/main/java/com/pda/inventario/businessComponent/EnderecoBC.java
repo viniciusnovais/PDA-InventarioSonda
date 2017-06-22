@@ -40,19 +40,20 @@ public class EnderecoBC {
 				
 				ContentValues values = new ContentValues();
 				values.put("ID_ENDERECO", objEnderecoList.get(i).IdEndereco);
-				values.put("COD_ENDERECO", objEnderecoList.get(i).Endereco);
+				values.put("COD_ENDERECO", objEnderecoList.get(i).Endereco.trim());
 				values.put("ID_SETOR", objEnderecoList.get(i).IdSetor);
 				values.put("DESC_SETOR", objEnderecoList.get(i).Setor);
+				values.put("ID_DEPATARMENTO", objEnderecoList.get(i).IdDepartamento);
+				values.put("DESC_DEPARTAMENTO", objEnderecoList.get(i).Departamento);
 				values.put("METODO_CONTAGEM", objEnderecoList.get(i).IdMetodoContagem);
-				values.put("DESC_METODO_CONTAGEM", objEnderecoList.get(i).MetodoContagem);				
 				values.put("METODO_AUDITORIA", objEnderecoList.get(i).IdMetodoAuditoria);
-				values.put("DESC_METODO_AUDITORIA", objEnderecoList.get(i).MetodoAuditoria);				
-				values.put("ID_DEPATARMENTO", objEnderecoList.get(i).IdDepartamento);		
-				values.put("DESC_DEPARTAMENTO", objEnderecoList.get(i).Departamento);	
-				values.put("QTDE_MAX_MULTIPLOS", objEnderecoList.get(i).Quantidade);
+				values.put("METODO_LEITURA", objEnderecoList.get(i).MetodoLeitura);
 				values.put("ID_INVENTARIO", objEnderecoList.get(i).IdInventario);
-				values.put("METODO_LEITURA", objEnderecoList.get(i).IdMetodoLeitura);
+				values.put("DESC_METODO_CONTAGEM", objEnderecoList.get(i).MetodoContagem);
+				values.put("DESC_METODO_AUDITORIA", objEnderecoList.get(i).MetodoAuditoria);
 				values.put("DESC_METODO_LEITURA", objEnderecoList.get(i).IdMetodoLeitura);
+				values.put("QTDE_MAX_MULTIPLOS", objEnderecoList.get(i).Quantidade);
+
 				bd.insert("PDA_TB_ENDERECO", null, values);	
 			}			
 		}
@@ -69,7 +70,7 @@ public class EnderecoBC {
 			String[] args = {codeEndereco};
 			Cursor cursor = bd.query("PDA_TB_ENDERECO", null, "COD_ENDERECO = ?" ,args, null, null, null);
 			while(cursor.moveToNext()){
-				objEndereco.IdEndereco = Integer.parseInt(cursor.getString(0));
+				objEndereco.IdEndereco = cursor.getString(0);
 				objEndereco.Endereco = cursor.getString(1);
 				objEndereco.IdSetor = cursor.getInt(2);
 				objEndereco.Setor = cursor.getString(3);

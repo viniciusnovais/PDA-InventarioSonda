@@ -44,8 +44,8 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.etPassword);
         btnLogin = (Button) findViewById(R.id.btnEntrar);
 
-//        etLogin.setText("102030");
-//        etPassword.setText("12345678");
+        //etLogin.setText("21007339");
+        //1etPassword.setText("694609");
         // SharedPreferences preferences = getSharedPreferences("PDA-INVENTARIO", MODE_PRIVATE);
 //        SharedPreferences.Editor editor = preferences.edit();
 
@@ -202,7 +202,7 @@ public class LoginActivity extends AppCompatActivity {
                 objUsuaurio.setDescricaoPerfil(objSoap.getProperty("DescricaoPefil").toString());
                 objUsuaurio.setCodigoFilial(Integer.parseInt(objSoap.getProperty("CodigoFilial").toString()));
                 objUsuaurio.setNomeFilial(objSoap.getProperty("NomeFilial").toString());
-                objUsuaurio.setCodigoCliente(Integer.parseInt(objSoap.getProperty("CodigoCliente").toString()));
+               // objUsuaurio.setCodigoCliente(Integer.parseInt(objSoap.getProperty("CodigoCliente").toString()));
                 objUsuaurio.setAtivo(Integer.parseInt(objSoap.getProperty("Ativo").toString()));
                 objUsuaurio.setStatusSenha(Integer.parseInt(objSoap.getProperty("StatusSenha").toString()));
 

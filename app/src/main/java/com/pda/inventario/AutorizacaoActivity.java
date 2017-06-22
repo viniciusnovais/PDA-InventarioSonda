@@ -75,6 +75,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.SystemClock;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -125,7 +126,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         btnConf = (Button) findViewById(R.id.btnConfig);
 
         etAutorizacao = (EditText) findViewById(R.id.etAutorizacao);
-        etAutorizacao.setText("5855085");
+        //etAutorizacao.setText("91539757");
 
         dialogLimpar = new ProgressDialog(AutorizacaoActivity.this);
 
@@ -269,15 +270,15 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
     public String getInventory(String authorization) {
 
-        final String SOAP_ACTION = "http://tempuri.org/GetInventarioAndroid";
-        final String METHOD_NAME = "GetInventarioAndroid";
+        final String SOAP_ACTION = "http://tempuri.org/ObterInventario";
+        final String METHOD_NAME = "ObterInventario";
         final String NAMESPACE = "http://tempuri.org/";
         //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
-        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/inventario.asmx";
+        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
 
         try {
             SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            Request.addProperty("autorizacao_", authorization);
+            Request.addProperty("_autorizacao", authorization);
 
             SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             soapEnvelope.implicitTypes = true;
@@ -298,21 +299,22 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                     return StringUtils.INVENT_CLOSED;
                 } else {
                     objInventario = new InventarioEO();
-                    objInventario.setIdInventario(Integer.parseInt(objSoap.getProperty("IdInventario").toString()));
-                    objInventario.setCodigoFilial(Integer.parseInt(objSoap.getProperty("CodigoFilial").toString()));
-                    objInventario.setFilial(objSoap.getProperty("Filial").toString());
-                    objInventario.setAutorizacao(objSoap.getProperty("Autorizacao").toString());
+                    objInventario.setIdInventario(Integer.parseInt(objSoap.getProperty("IDInventario").toString()));
+                    objInventario.setCodigoFilial(Integer.parseInt(objSoap.getProperty("CodigoEmpresa").toString()));
+                    objInventario.setFilial(objSoap.getProperty("NomeEmpresa").toString());
+                    objInventario.setAutorizacao(objSoap.getProperty("CodigoAutorizacao").toString());
                     objInventario.setStatus(Integer.parseInt(objSoap.getProperty("Status").toString()));
 
                     //if (verificaImportacao()) {
-                        //this.getUsers();
-                        this.getDepto();
-                        this.getSetor();
-                        //this.GetEndereco();
-                        this.DownloadZipFile(GetEnderecoFile());
-                        //this.getProdutoList(objInventario.getIdInventario());
-                        this.DownloadZipFile(GetProduto());
-                   // }
+                    //this.getUsers();
+                    //this.getDepto();
+                    //this.getSetor();
+                    this.DownloadZipFile(GetProduto());
+                    this.GetEndereco();
+                    //this.DownloadZipFile(GetEnderecoFile());
+                    //this.getProdutoList(objInventario.getIdInventario());
+
+                    // }
                     return StringUtils.INVENT_OK;
                 }
             } else
@@ -601,23 +603,16 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
     public void GetEndereco() {
 
-        final String SOAP_ACTION = "http://tempuri.org/GetEndereco";
-        final String METHOD_NAME = "GetEndereco";
+        final String SOAP_ACTION = "http://tempuri.org/ObterListaEnderecos";
+        final String METHOD_NAME = "ObterListaEnderecos";
         final String NAMESPACE = "http://tempuri.org/";
         //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
-        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/inventario.asmx";
+        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
 
         try {
+
             SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            EnderecoColetorEO obj = new EnderecoColetorEO();
-            obj.IdInventario = objInventario.getIdInventario();
-
-            PropertyInfo pi = new PropertyInfo();
-            pi.setName("entity");
-            pi.setValue(obj);
-            pi.setType(obj.getClass());
-
-            Request.addProperty(pi);
+            Request.addProperty("_codEmpresa", objInventario.getCodigoFilial());
 
             SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             soapEnvelope.implicitTypes = true;
@@ -627,11 +622,36 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
             MarshalDate md = new MarshalDate();
             md.register(soapEnvelope);
 
-            soapEnvelope.addMapping(NAMESPACE, "EnderecoColetorEO", new EnderecoColetorEO().getClass());
-
             HttpTransportSE transport = new HttpTransportSE(URL);
 
             transport.call(SOAP_ACTION, soapEnvelope);
+
+//            SoapObject objSoap = (SoapObject) soapEnvelope.getResponse();
+
+//            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
+//            EnderecoColetorEO obj = new EnderecoColetorEO();
+//            obj.IdInventario = objInventario.getIdInventario();
+
+//            PropertyInfo pi = new PropertyInfo();
+//            pi.setName("entity");
+//            pi.setValue(obj);
+//            pi.setType(obj.getClass());
+
+//            Request.addProperty(pi);
+
+//            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+//            soapEnvelope.implicitTypes = true;
+//            soapEnvelope.dotNet = true;
+//            soapEnvelope.setOutputSoapObject(Request);
+//
+//            MarshalDate md = new MarshalDate();
+//            md.register(soapEnvelope);
+//
+//            soapEnvelope.addMapping(NAMESPACE, "EnderecoColetorEO", new EnderecoColetorEO().getClass());
+//
+//            HttpTransportSE transport = new HttpTransportSE(URL);
+
+            //transport.call(SOAP_ACTION, soapEnvelope);
 
             SoapObject objSoapList = (SoapObject) soapEnvelope.getResponse();
 
@@ -641,25 +661,27 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                     SoapObject objSoap = (SoapObject) objSoapList.getProperty(i);
                     EnderecoColetorEO objEndereco = new EnderecoColetorEO();
 
-                    objEndereco.IdInventario = Integer.parseInt(objSoap.getPropertyAsString("IdInventario").toString());
-                    objEndereco.IdEndereco = Integer.parseInt(objSoap.getPropertyAsString("IdEndereco").toString());
-                    objEndereco.IdDepartamento = Integer.parseInt(objSoap.getPropertyAsString("IdDepartamento").toString());
-                    objEndereco.IdSetor = Integer.parseInt(objSoap.getPropertyAsString("IdSetor").toString());
-                    objEndereco.IdMetodoContagem = Integer.parseInt(objSoap.getPropertyAsString("IdMetodoContagem").toString());
-                    objEndereco.IdMetodoAuditoria = Integer.parseInt(objSoap.getPropertyAsString("IdMetodoAuditoria").toString());
-                    objEndereco.IdMetodoLeitura = Integer.parseInt(objSoap.getPropertyAsString("IdMetodoLeitura").toString());
-                    objEndereco.Endereco = objSoap.getPropertyAsString("Endereco").toString();
-                    objEndereco.Departamento = objSoap.getPropertyAsString("Departamento").toString();
-                    objEndereco.Setor = objSoap.getPropertyAsString("Setor").toString();
-                    objEndereco.MetodoContagem = objSoap.getPropertyAsString("MetodoContagem").toString();
-                    objEndereco.MetodoAuditoria = objSoap.getPropertyAsString("MetodoAuditoria").toString();
-                    objEndereco.Quantidade = Integer.parseInt(objSoap.getPropertyAsString("Quantidade").toString());
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                    try {
-                        objEndereco.DataHora = format.parse(objSoap.getPropertyAsString("DataHora").toString());
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+                    objEndereco.IdInventario = objInventario.getIdInventario();
+                    objEndereco.IdEndereco = (objSoap.getPropertyAsString("ENDERECO").toString());
+                    objEndereco.IdDepartamento = 1;
+                    objEndereco.IdSetor = 1;
+                    objEndereco.IdMetodoContagem = 4;
+                    objEndereco.IdMetodoAuditoria = 4;
+                    objEndereco.IdMetodoLeitura = 1;
+                    objEndereco.MetodoLeitura = "1";
+                    objEndereco.Endereco = objSoap.getPropertyAsString("ENDERECO").toString();
+                    objEndereco.Departamento = objSoap.getPropertyAsString("NM_LOCAL").toString();
+                    objEndereco.Setor = objSoap.getPropertyAsString("NM_MODULO").toString();
+                    objEndereco.MetodoContagem = "Multiplo";
+                    objEndereco.MetodoAuditoria = "Multiplo";
+                    objEndereco.Quantidade = Integer.parseInt(objSoap.getPropertyAsString("_x005F_x003A_B1").toString());
+
+//                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+//                    try {
+//                        objEndereco.DataHora = format.parse(objSoap.getPropertyAsString("DataHora").toString());
+//                    } catch (ParseException e) {
+//                        e.printStackTrace();
+//                    }
 
                     objEnderecoList.add(objEndereco);
                 }
@@ -679,15 +701,17 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
     public List<ControleArquivoEO> GetProduto() {
 
-        final String SOAP_ACTION = "http://tempuri.org/GetFilenameProdutoAndroid";
-        final String METHOD_NAME = "GetFilenameProdutoAndroid";
+        final String SOAP_ACTION = "http://tempuri.org/ObterListaNomeArquivos";
+        final String METHOD_NAME = "ObterListaNomeArquivos";
         final String NAMESPACE = "http://tempuri.org/";
         //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
-        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/inventario.asmx";
+        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
 
         try {
             SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-            Request.addProperty("codigoInventario_", objInventario.getIdInventario());
+            Request.addProperty("_empresa", objInventario.getCodigoFilial());
+            Request.addProperty("idInventario", objInventario.getIdInventario());
+            Request.addProperty("_autorizacao", objInventario.getAutorizacao());
 
             SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
             soapEnvelope.implicitTypes = true;
@@ -708,8 +732,8 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                 SoapObject objSoap = (SoapObject) objSoapList.getProperty(i);
                 ControleArquivoEO objControleArquivo = new ControleArquivoEO();
 
-                objControleArquivo.CodigoInventario = Integer.parseInt(objSoap.getPropertyAsString("CodigoInventario").toString());
-                objControleArquivo.NomeArquivo = objSoap.getPropertyAsString("NomeArquivo").toString();
+                objControleArquivo.CodigoInventario = objInventario.getIdInventario();
+                objControleArquivo.NomeArquivo = objSoap.getPropertyAsString("Arquivo").toString();
                 objControleArquivoList.add(objControleArquivo);
             }
             return objControleArquivoList;
@@ -772,8 +796,8 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         EnderecoBC repositoryEnd = new EnderecoBC(this);
         try {
             for (int i = 0; i < objControleArquivoList.size(); i++) {
-                URL url = new URL("http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/Arquivos/" + objControleArquivoList.get(i).NomeArquivo.replace(".ZIP", ".TXT"));
-//				URL url = new URL("http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/Arquivos/" + objControleArquivoList.get(i).NomeArquivo);
+                //URL url = new URL("http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/Arquivos/" + objControleArquivoList.get(i).NomeArquivo.replace(".ZIP", ".TXT"));
+                URL url = new URL("http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/Arquivos/" + objControleArquivoList.get(i).NomeArquivo);
                 //				URL url = new URL("http://179.184.159.52/wsandroid/Arquivos/SKU_189-9.ZIP");
                 URLConnection conexion = url.openConnection();
                 conexion.connect();
@@ -783,11 +807,13 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
                 InputStream input = new BufferedInputStream(url.openStream());
                 OutputStream output = new FileOutputStream(
-                        Environment.getExternalStorageDirectory().getPath() + "/" + objControleArquivoList.get(i).NomeArquivo.replace(".ZIP", ".TXT"));
-//						Environment.getExternalStorageDirectory().getPath() + "/" + objControleArquivoList.get(i).NomeArquivo);
+                        //Environment.getExternalStorageDirectory().getPath() + "/" + objControleArquivoList.get(i).NomeArquivo.replace(".ZIP", ".TXT"));
+                        Environment.getExternalStorageDirectory().getPath() + "/" + objControleArquivoList.get(i).NomeArquivo);
                 //						Environment.getExternalStorageDirectory().getPath() + "/SKU_189-9.ZIP");
 
                 byte data[] = new byte[1024];
+
+
 
                 while ((count = input.read(data)) != -1) {
                     output.write(data, 0, count);
@@ -797,7 +823,8 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                 output.close();
                 input.close();
 
-                fileNameList.add(objControleArquivoList.get(i).NomeArquivo.replace(".ZIP", ".TXT"));
+//                fileNameList.add(objControleArquivoList.get(i).NomeArquivo.replace(".ZIP", ".TXT"));
+                fileNameList.add(objControleArquivoList.get(i).NomeArquivo);
             }
 
             //fileNameList = unzip(objControleArquivoList, Environment.getExternalStorageDirectory() + "/unzipped/");

@@ -1,10 +1,18 @@
 package com.pda.inventario;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Random;
 
 import org.ksoap2.SoapEnvelope;
+import org.ksoap2.serialization.MarshalBase64;
 import org.ksoap2.serialization.MarshalDate;
 import org.ksoap2.serialization.SoapObject;
 import org.ksoap2.serialization.SoapSerializationEnvelope;
@@ -29,6 +37,7 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -141,7 +150,7 @@ public class ContagemActivity extends Activity {
 		btnExcluir.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (objEndAberto != null){
-					if (objEndAberto.IdEndereco != 0){
+					if (objEndAberto.IdEndereco != ""){
 						ColetaBC repository = new ColetaBC(ContagemActivity.this);
 						EnderecoBC repositoryEnd = new EnderecoBC(ContagemActivity.this);
 						
@@ -163,7 +172,7 @@ public class ContagemActivity extends Activity {
 		btnZerar.setOnClickListener(new View.OnClickListener() {
 			public void onClick(View v) {
 				if (objEndAberto != null){
-					if (objEndAberto.IdEndereco != 0){
+					if (objEndAberto.IdEndereco !=""){
 						ColetaBC repository = new ColetaBC(ContagemActivity.this);
 						repository.deleteColetaEnd(String.valueOf(objEndAberto.IdEndereco));
 					}else{
@@ -182,7 +191,7 @@ public class ContagemActivity extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
 				if (objEndAberto != null){
-					if (objEndAberto.IdEndereco != 0){
+					if (objEndAberto.IdEndereco != ""){
 						if (iCurrentSelection != position){
 							NEW_SELECTION = spinMetodoContagem.getSelectedItem().toString();
 							spinMetodoContagem.setSelection(adp.getPosition(CURRENT_SELECTION));
@@ -229,7 +238,7 @@ public class ContagemActivity extends Activity {
 
 		try {
 			if (objEndAberto != null){
-				if (objEndAberto.IdEndereco != 0){
+				if (objEndAberto.IdEndereco != ""){
 					String[] values = repository.getColetaListViewByEndereco(String.valueOf(objEndAberto.IdEndereco));
 
 					ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
@@ -278,10 +287,10 @@ public class ContagemActivity extends Activity {
 		EnderecoBC repository = new EnderecoBC(this);
 		try {
 			if (objEndAberto != null){
-				if (objEndAberto.IdEndereco == 0){
+				if (objEndAberto.IdEndereco.equals("")){
 					objEndAberto = repository.GetEnderecoByCode(this.etEndProd.getText().toString());
 
-					if (objEndAberto.IdEndereco == 0){
+					if (objEndAberto.IdEndereco.equals("")){
 						Toast.makeText(ContagemActivity.this, StringUtils.END_NOK, Toast.LENGTH_SHORT).show();
 						etEndProd.requestFocus();
 						etEndProd.setText("");
@@ -310,10 +319,10 @@ public class ContagemActivity extends Activity {
 		try {
 			objProduto = repository.GetProdByEAN(this.etEndProd.getText().toString());
 
-			if (objProduto.getIdProduto() == 0){
+			if (objProduto.getCodSku()==null){
 				objProduto = repository.GetProdBySKU(this.etEndProd.getText().toString());
 
-				if (objProduto.getIdProduto() == 0){
+			if (objProduto.getCodSku()==null){
 					Toast.makeText(ContagemActivity.this, StringUtils.PROD_NOK, Toast.LENGTH_SHORT).show();					
 					etEndProd.requestFocus();
 					etEndProd.setText("");	
@@ -347,9 +356,28 @@ public class ContagemActivity extends Activity {
 		ColetaBC repository = new ColetaBC(this);
 		ColetaEO objColeta;
 
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
+		sdf.format(new Date());
+
 		try {
-			objColeta = new ColetaEO(0, objProduto.getCodAutomacao(), objProduto.getColeta(), objInventarioCorrente.getIdInventario(), objEndAberto.IdEndereco, "30-05-2016", 1, TIPO_ATIVIDADE, 0,
-					objProduto.getCodSku(), objProduto.getDescSku(), 1, String.valueOf(new Random().nextInt()+ 1), 0, "", 0, objUsuarioLogado.getCodigo(), 1);
+			objColeta = new ColetaEO(0,
+					objProduto.getCodAutomacao(),
+					objProduto.getColeta(),
+					objInventarioCorrente.getIdInventario(),
+					objEndAberto.IdEndereco,
+					sdf.toString(),
+					1,
+					TIPO_ATIVIDADE,
+					0,
+					objProduto.getCodSku(),
+					objProduto.getDescSku(),
+					1,
+					String.valueOf(new Random().nextInt()+ 1),
+					0,
+					"",
+					0,
+					objUsuarioLogado.getCodigo(),
+					1);
 
 			repository.CreateColeta(objColeta);
 		} catch (Exception e) {
@@ -359,7 +387,7 @@ public class ContagemActivity extends Activity {
 
 	private void validaColeta() {
 		if (objEndAberto != null){
-			if (objEndAberto.IdEndereco == 0){
+			if (objEndAberto.IdEndereco.equals("")){
 				if (verificaEndereco()){
 					tvEndereco.setText(StringUtils.END + objEndAberto.Endereco);
 					tvDepartamento.setText(StringUtils.DPTO + objEndAberto.Departamento);
@@ -367,7 +395,8 @@ public class ContagemActivity extends Activity {
 
 					this.populaListViewColeta();
 
-					spinMetodoContagem.setSelection(adp.getPosition(objEndAberto.MetodoContagem));
+
+					spinMetodoContagem.setSelection(1);
 					iCurrentSelection = spinMetodoContagem.getSelectedItemPosition();
 					CURRENT_SELECTION = spinMetodoContagem.getSelectedItem().toString();
 
@@ -432,49 +461,146 @@ public class ContagemActivity extends Activity {
 		}
 	}
 
+//	public void setContagem() {
+//
+//		String SOAP_ACTION = "http://tempuri.org/SetColeta";
+//		String METHOD_NAME = "SetColeta";
+//		String NAMESPACE = "http://tempuri.org/";
+//		//String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
+//		String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
+//
+//		try {
+//			ColetaBC repository = new ColetaBC(this);
+//			SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
+//			List<ContagemColetorEO> obj = new ArrayList<ContagemColetorEO>();
+//
+//			obj = repository.GetContagemColetorByEndereco(String.valueOf(objEndAberto.IdEndereco));
+//
+//			SoapObject soapEntity = new SoapObject(NAMESPACE, "entity");
+//
+//			for (ContagemColetorEO i : obj){
+//				soapEntity.addProperty("ContagemColetorEO", i);
+//			}
+//			Request.addSoapObject(soapEntity);
+//
+//			SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+//			soapEnvelope.implicitTypes = true;
+//			soapEnvelope.dotNet = true;
+//			soapEnvelope.setOutputSoapObject(Request);
+//
+//			MarshalDate md = new MarshalDate();
+//			md.register(soapEnvelope);
+//
+//			soapEnvelope.addMapping(NAMESPACE, "ContagemColetorEO",new ContagemColetorEO().getClass());
+//
+//			HttpTransportSE transport = new HttpTransportSE(URL);
+//
+//			transport.call(SOAP_ACTION, soapEnvelope);
+//
+//			SoapObject objSoapList = (SoapObject) soapEnvelope.getResponse();
+//
+//			repository.UpdateColetaExport(String.valueOf(objEndAberto.IdEndereco));
+//
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
+
 	public void setContagem() {
 
-		String SOAP_ACTION = "http://tempuri.org/SetColeta";
-		String METHOD_NAME = "SetColeta";
-		String NAMESPACE = "http://tempuri.org/";
-		//String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
-		String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/inventario.asmx";
-		
+		final String SOAP_ACTION = "http://tempuri.org/PutFile";
+		final String METHOD_NAME = "PutFile";
+		final String NAMESPACE = "http://tempuri.org/";
+		final String URL = "http://"+StringUtils.SERVIDOR+"/"+StringUtils.DIRETORIO_VIRTUAL+"/wsproduto.asmx";
+
+		// Create request
+		SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
+		// Create envelope
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
+		String data = sdf.format(new Date());
+		request.addProperty("buffer", CriarArquivoContagem());
+		request.addProperty("filename", data+".txt");
+
+
+		SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+		envelope.dotNet = true;
+		envelope.implicitTypes = true;
+
+		// Set output SOAP object
+		envelope.setOutputSoapObject(request);
+
+		new MarshalBase64().register(envelope);
+
+		// Create HTTP call object
+		HttpTransportSE androidHttpTransport = new HttpTransportSE(URL);
+
 		try {
-			ColetaBC repository = new ColetaBC(this);
-			SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
-			List<ContagemColetorEO> obj = new ArrayList<ContagemColetorEO>();
-
-			obj = repository.GetContagemColetorByEndereco(String.valueOf(objEndAberto.IdEndereco));
-
-			SoapObject soapEntity = new SoapObject(NAMESPACE, "entity");
-
-			for (ContagemColetorEO i : obj){
-				soapEntity.addProperty("ContagemColetorEO", i);
-			}
-			Request.addSoapObject(soapEntity);
-
-			SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
-			soapEnvelope.implicitTypes = true;
-			soapEnvelope.dotNet = true;
-			soapEnvelope.setOutputSoapObject(Request);
-
-			MarshalDate md = new MarshalDate();
-			md.register(soapEnvelope);
-
-			soapEnvelope.addMapping(NAMESPACE, "ContagemColetorEO",new ContagemColetorEO().getClass());
-
-			HttpTransportSE transport = new HttpTransportSE(URL);
-
-			transport.call(SOAP_ACTION, soapEnvelope);
-
-			SoapObject objSoapList = (SoapObject) soapEnvelope.getResponse();
-
-			repository.UpdateColetaExport(String.valueOf(objEndAberto.IdEndereco));
+			// Invoke web service
+			androidHttpTransport.call(SOAP_ACTION, envelope);
 
 		} catch (Exception e) {
+			//Assign Error Status true in static variable 'errored'
+			//LoginActivity.errored = true;
 			e.printStackTrace();
 		}
+	}
+
+	public byte[] CriarArquivoContagem() {
+		String linha;
+		File diretorio;
+		String diretorioApp;
+		String nomeDiretorio;
+		FileInputStream inputStream;
+		byte[] data = new byte[0];
+
+		ColetaBC repository = new ColetaBC(this);
+		List<ColetaEO> lista = new ArrayList<ColetaEO>();
+
+		lista = repository.GetColetaPendente(String.valueOf(objInventarioCorrente.getIdInventario()));
+
+		SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmsss");
+		sdf.format(new Date());
+
+		nomeDiretorio = "arquivos";
+		diretorioApp = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+				+ "/" + nomeDiretorio + "/";
+
+		diretorio = new File(diretorioApp);
+		diretorio.mkdirs();
+
+		File fileExt = new File(diretorioApp, "coleta" + sdf + ".txt");
+
+		fileExt.getParentFile().mkdirs();
+		FileOutputStream fosExt = null;
+		try {
+			fosExt = new FileOutputStream(fileExt);
+
+			for (ColetaEO c : lista) {
+				linha =
+						c.getProperty(1) + ";" +
+								c.getProperty(9) + ";" +
+								c.getProperty(2) + ";" +
+								c.getProperty(3) + ";" +
+								c.getProperty(4) + ";" +
+								c.getProperty(7) + ";" +
+								c.getProperty(16) + ";" +
+								c.getProperty(12);
+				fosExt.write(linha.getBytes());
+
+			}
+			fosExt.close();
+			data= new byte[(int) fileExt.length()];
+
+			inputStream = new FileInputStream(fileExt);
+			inputStream.read(data);
+			inputStream.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return data;
 	}
 
 	private void validaAutorizacaoLider(){
