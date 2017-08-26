@@ -52,6 +52,7 @@ import com.pda.inventario.businessComponent.EnderecoBC;
 import com.pda.inventario.businessComponent.ProdutoBC;
 import com.pda.inventario.businessComponent.SetorBC;
 import com.pda.inventario.businessComponent.UsuarioColetorBC;
+import com.pda.inventario.businessComponent.UsuarioLiderBC;
 import com.pda.inventario.entityObject.ColetaEO;
 import com.pda.inventario.entityObject.ControleArquivoEO;
 import com.pda.inventario.entityObject.DepartamentoColetorEO;
@@ -63,6 +64,7 @@ import com.pda.inventario.entityObject.ProdutoEO;
 import com.pda.inventario.entityObject.SetorColetorEO;
 import com.pda.inventario.entityObject.UsuarioColetorEO;
 import com.pda.inventario.entityObject.UsuarioEO;
+import com.pda.inventario.entityObject.UsuarioLiderEO;
 
 import android.Manifest;
 import android.app.Activity;
@@ -111,11 +113,9 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
         Intent intent = getIntent();
         objUsuarioLogado = (UsuarioEO) intent.getSerializableExtra("UsuarioEO");
-
-        //objUsuarioLogado = new UsuarioEO();
-        //objUsuarioLogado.setNome(getIntent().getExtras().getString("login"));
-        objUsuarioLogado.setCodigo(1);
-        objUsuarioLogado.setCodigoPerfil(1);
+//        objUsuarioLogado.setNome(objUsuarioLogado.getNome());
+//        objUsuarioLogado.setCodigo(objUsuarioLogado.getCodigo());
+//        objUsuarioLogado.setCodigoPerfil(objUsuarioLogado.getCodigoPerfil());
 
 
         tvUsuarioLogado = (TextView) findViewById(R.id.tvUsuarioLogado);
@@ -126,7 +126,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         btnConf = (Button) findViewById(R.id.btnConfig);
 
         etAutorizacao = (EditText) findViewById(R.id.etAutorizacao);
-        //etAutorizacao.setText("91539757");
+        //etAutorizacao.setText("72826018");
 
         dialogLimpar = new ProgressDialog(AutorizacaoActivity.this);
 
@@ -248,7 +248,19 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
             resultCall = getInventory(etAutorizacao.getText().toString());
 
+//            for (int i = 0; i < count; i++) {
+//                publishProgress(i);
+//            }
+
+
             return null;
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            //dialog.setProgress(values[0]);
+
         }
 
         @Override
@@ -289,7 +301,6 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
             md.register(soapEnvelope);
 
             HttpTransportSE transport = new HttpTransportSE(URL);
-
             transport.call(SOAP_ACTION, soapEnvelope);
 
             SoapObject objSoap = (SoapObject) soapEnvelope.getResponse();
@@ -310,6 +321,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                     //this.getDepto();
                     //this.getSetor();
                     this.DownloadZipFile(GetProduto());
+                    this.GetUsuario();
                     this.GetEndereco();
                     //this.DownloadZipFile(GetEnderecoFile());
                     //this.getProdutoList(objInventario.getIdInventario());
@@ -657,6 +669,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
             if (objSoapList != null) {
                 List<EnderecoColetorEO> objEnderecoList = new ArrayList<EnderecoColetorEO>();
+//                count = objSoapList.getPropertyCount();
                 for (int i = 0; i < objSoapList.getPropertyCount(); i++) {
                     SoapObject objSoap = (SoapObject) objSoapList.getProperty(i);
                     EnderecoColetorEO objEndereco = new EnderecoColetorEO();
@@ -707,6 +720,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
         final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
 
+        List<ControleArquivoEO> objControleArquivoList = new ArrayList<ControleArquivoEO>();
         try {
             SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
             Request.addProperty("_empresa", objInventario.getCodigoFilial());
@@ -726,7 +740,6 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
             transport.call(SOAP_ACTION, soapEnvelope);
 
             SoapObject objSoapList = (SoapObject) soapEnvelope.getResponse();
-            List<ControleArquivoEO> objControleArquivoList = new ArrayList<ControleArquivoEO>();
 
             for (int i = 0; i < objSoapList.getPropertyCount(); i++) {
                 SoapObject objSoap = (SoapObject) objSoapList.getProperty(i);
@@ -736,12 +749,13 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                 objControleArquivo.NomeArquivo = objSoap.getPropertyAsString("Arquivo").toString();
                 objControleArquivoList.add(objControleArquivo);
             }
-            return objControleArquivoList;
 
         } catch (Exception e) {
             e.printStackTrace();
             return null;
         }
+
+        return objControleArquivoList;
     }
 
     public List<ControleArquivoEO> GetEnderecoFile() {
@@ -812,7 +826,6 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
                 //						Environment.getExternalStorageDirectory().getPath() + "/SKU_189-9.ZIP");
 
                 byte data[] = new byte[1024];
-
 
 
                 while ((count = input.read(data)) != -1) {
@@ -959,4 +972,48 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
             ex.printStackTrace();
         }
     }
+
+    public void GetUsuario() {
+
+        final String SOAP_ACTION = "http://tempuri.org/ListaLider ";
+        final String METHOD_NAME = "ListaLider ";
+        final String NAMESPACE = "http://tempuri.org/";
+        //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
+        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsautenticacao.asmx";
+
+        try {
+
+            SoapObject Request = new SoapObject(NAMESPACE, METHOD_NAME);
+
+            SoapSerializationEnvelope soapEnvelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
+            soapEnvelope.implicitTypes = true;
+            soapEnvelope.dotNet = true;
+            soapEnvelope.setOutputSoapObject(Request);
+
+            HttpTransportSE transport = new HttpTransportSE(URL);
+
+            transport.call(SOAP_ACTION, soapEnvelope);
+
+            SoapObject objSoapList = (SoapObject) soapEnvelope.getResponse();
+            SoapObject item;
+            List<UsuarioLiderEO> lista = new ArrayList<>();
+            UsuarioLiderBC usuarioLiderBC = new UsuarioLiderBC(AutorizacaoActivity.this);
+            for (int i = 0; i < objSoapList.getPropertyCount(); i++) {
+                item = (SoapObject) objSoapList.getProperty(i);
+                UsuarioLiderEO usuarioLiderEO = new UsuarioLiderEO();
+
+                usuarioLiderEO.setLogin(item.getProperty("Login").toString());
+                usuarioLiderEO.setSenha(item.getProperty("Senha").toString());
+
+                lista.add(usuarioLiderEO);
+
+            }
+
+            usuarioLiderBC.CreateUsuario(lista);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

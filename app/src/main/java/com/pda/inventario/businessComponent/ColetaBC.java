@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.pda.inventario.entityObject.ColetaEO;
 import com.pda.inventario.entityObject.ContagemColetorEO;
+import com.pda.inventario.entityObject.ProdutoEO;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -69,7 +70,7 @@ public class ColetaBC {
 				objColeta = new ColetaEO();
 				objColeta.IdEndereco = cursor.getString(0);
 				objColeta.CodigoBarra = cursor.getString(1);
-				objColeta.QuantidadeContagem = cursor.getInt(2);
+				objColeta.QuantidadeContagem = cursor.getFloat(2);
 				objColeta.IdInventario = cursor.getInt(3);
 				objColeta.IdEndereco = cursor.getString(0);
 				objColeta.DataColeta = cursor.getString(5);
@@ -100,32 +101,30 @@ public class ColetaBC {
 			this.CloseConnection();
 		}
 	}
-	
-	public String[] getColetaListViewByEndereco(String idEndereco){
+
+	//Quando for utilizar o baseAdapter
+	public List<ProdutoEO> getColetaListViewByEndereco(String idEndereco){
 		try{
 			this.OpenConnection();
-			
-			String s1, s2, s3;
+
+			List<ProdutoEO> lista = new ArrayList<>();
 			String[] argsWhere = {idEndereco, "0"};
-			String[] argsColumns = {"COD_PROD", "DESC_PROD", "QTDE_CONTAGEM"};
+			String[] argsColumns = {"COD_PROD", "DESC_PROD", "QTDE_CONTAGEM","ID_COLETA"};
 			Cursor cursor = bd.query("PDA_TB_ITEM_COLETA", argsColumns, "ID_ENDERECO = ? AND EXPORT = ?" ,argsWhere, null, null, null);
 			String[] arrayColeta = new String[cursor.getCount()];
-			
-			while(cursor.moveToNext()){
-				
-				s1 = cursor.getString(0);
-				s1 = String.format("%-20s", s1);
-				
-				s2 = cursor.getString(1);
-				s2 = String.format("%-20s", s2);
-				
-				s3 = cursor.getString(2);
-				
-				arrayColeta[cursor.getPosition()] = s1 + s2 + s3;
-			}
-			cursor.close(); 
 
-			return arrayColeta;
+			while(cursor.moveToNext()){
+				ProdutoEO p = new ProdutoEO();
+				p.setCodSku(cursor.getString(0));
+				p.setDescSku(cursor.getString(1));
+				p.setQuantidade(cursor.getFloat(2));
+				//estou usando o getidproduto para pegar o id da coleta para deletar
+				p.setIdProduto(cursor.getInt(3));
+				lista.add(p);
+			}
+			cursor.close();
+
+			return lista;
 		}
 		catch(Exception e){
 			e.printStackTrace();
@@ -135,6 +134,50 @@ public class ColetaBC {
 			this.CloseConnection();
 		}
 	}
+
+	public long DeleteProdutoByCod(int idColeta){
+		try {
+			this.OpenConnection();
+			return bd.delete("PDA_TB_ITEM_COLETA","ID_COLETA = ?", new String[]{idColeta+""});
+		}finally {
+			this.CloseConnection();
+		}
+	}
+
+//	public String[] getColetaListViewByEndereco(String idEndereco){
+//		try{
+//			this.OpenConnection();
+//
+//			String s1, s2, s3;
+//			String[] argsWhere = {idEndereco, "0"};
+//			String[] argsColumns = {"COD_PROD", "DESC_PROD", "QTDE_CONTAGEM"};
+//			Cursor cursor = bd.query("PDA_TB_ITEM_COLETA", argsColumns, "ID_ENDERECO = ? AND EXPORT = ?" ,argsWhere, null, null, null);
+//			String[] arrayColeta = new String[cursor.getCount()];
+//
+//			while(cursor.moveToNext()){
+//
+//				s1 = cursor.getString(0);
+//				s1 = String.format("%-20s", s1);
+//
+//				s2 = cursor.getString(1);
+//				s2 = String.format("%-20s", s2);
+//
+//				s3 = cursor.getString(2);
+//
+//				arrayColeta[cursor.getPosition()] = s1 + s2 + s3;
+//			}
+//			cursor.close();
+//
+//			return arrayColeta;
+//		}
+//		catch(Exception e){
+//			e.printStackTrace();
+//			return null;
+//		}
+//		finally{
+//			this.CloseConnection();
+//		}
+//	}
 	
 	public List<ContagemColetorEO> GetContagemColetorByEndereco(String idEndereco){
 		try{
@@ -148,7 +191,7 @@ public class ColetaBC {
 				objColeta = new ContagemColetorEO();
 				
 				objColeta.CodigoBarra = cursor.getString(1);
-				objColeta.QtdeContagem = cursor.getInt(2);
+				objColeta.QtdeContagem = cursor.getFloat(2);
 				objColeta.Inventario = cursor.getInt(3);
 				objColeta.Endereco = String.valueOf(cursor.getInt(4));
 				objColeta.Atividade = cursor.getInt(7);
@@ -183,7 +226,7 @@ public class ColetaBC {
 				objColeta = new ContagemColetorEO();
 				
 				objColeta.CodigoBarra = cursor.getString(1);
-				objColeta.QtdeContagem = cursor.getInt(2);
+				objColeta.QtdeContagem = cursor.getFloat(2);
 				objColeta.Inventario = cursor.getInt(3);
 				objColeta.Endereco = String.valueOf(cursor.getInt(4));
 				objColeta.Atividade = cursor.getInt(7);
@@ -218,7 +261,7 @@ public class ColetaBC {
 				objColeta = new ColetaEO();
 				objColeta.IdEndereco = cursor.getString(0);
 				objColeta.CodigoBarra = cursor.getString(1);
-				objColeta.QuantidadeContagem = cursor.getInt(2);
+				objColeta.QuantidadeContagem = cursor.getFloat(2);
 				objColeta.IdInventario = cursor.getInt(3);
 				objColeta.IdEndereco = cursor.getString(4);
 				objColeta.DataColeta = cursor.getString(5);

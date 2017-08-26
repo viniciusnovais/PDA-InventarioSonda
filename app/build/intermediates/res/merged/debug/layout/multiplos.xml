@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_x="63dp"
         android:layout_y="57dp"
+        android:digits="0123456789."
         android:background="@android:color/white"
         android:backgroundTint="@color/switch_thumb_normal_material_dark"
         android:backgroundTintMode="add"

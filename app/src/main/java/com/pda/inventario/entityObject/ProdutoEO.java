@@ -7,12 +7,12 @@ public class ProdutoEO {
     private String DescSku;
     private float Preco;
     private float Quantidade;
-    private int Coleta;
+    private float Coleta;
 	private String PPV;
     
     public ProdutoEO(){}
     
-    public ProdutoEO(int idProduto, String codAutomacao, String codSku, String descSku, float preco, float quantidade, int coleta,String ppv){
+    public ProdutoEO(int idProduto, String codAutomacao, String codSku, String descSku, float preco, float quantidade, float coleta,String ppv){
     	IdProduto = idProduto;
     	CodAutomacao = codAutomacao;
         CodSku = codSku;
@@ -65,11 +65,11 @@ public class ProdutoEO {
 		Quantidade = quantidade;
 	}
 
-	public int getColeta() {
+	public float getColeta() {
 		return Coleta;
 	}
 
-	public void setColeta(int coleta) {
+	public void setColeta(float coleta) {
 		Coleta = coleta;
 	}
 

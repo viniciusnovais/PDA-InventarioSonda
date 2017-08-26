@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.IllegalFormatCodePointException;
 import java.util.List;
 
 import org.ksoap2.SoapEnvelope;
@@ -26,6 +27,7 @@ import com.pda.inventario.businessComponent.DepartamentoBC;
 import com.pda.inventario.businessComponent.EnderecoBC;
 import com.pda.inventario.businessComponent.SetorBC;
 import com.pda.inventario.businessComponent.UsuarioColetorBC;
+import com.pda.inventario.businessComponent.UsuarioLiderBC;
 import com.pda.inventario.entityObject.ColetaEO;
 import com.pda.inventario.entityObject.ContagemColetorEO;
 import com.pda.inventario.entityObject.DepartamentoColetorEO;
@@ -35,6 +37,7 @@ import com.pda.inventario.entityObject.InventarioEO;
 import com.pda.inventario.entityObject.SetorColetorEO;
 import com.pda.inventario.entityObject.UsuarioColetorEO;
 import com.pda.inventario.entityObject.UsuarioEO;
+import com.pda.inventario.entityObject.UsuarioLiderEO;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -43,6 +46,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -51,21 +55,34 @@ import android.widget.Toast;
 
 public class PrincipalActivity extends Activity {
     final int ATIVIDADE_CONTAGEM = 2;
-    final int ATIVIDADE_AUDITORIA = 3;
-    final int ATIVIDADE_DIVERGENCIA = 5;
-    final int ATIVIDADE_FINAL = 4;
+    final int ATIVIDADE_AUDITORIA = 4;
+    final int ATIVIDADE_DIVERGENCIA = 6;
+    final int ATIVIDADE_FINAL = 3;
 
     UsuarioEO objUsuarioLogado = new UsuarioEO();
     InventarioEO objInventario = new InventarioEO();
 
     Button btnContagem, btnExportacao, btnImportacao, btnAuditoria, btnDivergencia, btnFinal;
-    TextView tvPendentes;
+    TextView tvPendentes, etUser, etPassword, btnEntrar;
+    String usuario, senha;
+    AlertDialog dialog;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.principal);
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View v = View.inflate(this, R.layout.view_login_autorizacao, null);
+        etUser = (TextView) v.findViewById(R.id.etUser);
+        etPassword = (TextView) v.findViewById(R.id.etPassword);
+        btnEntrar = (TextView) v.findViewById(R.id.btnEntrar);
+        builder.setView(v);
+        dialog = builder.create();
+
+        usuario = etUser.getText().toString();
+        senha = etPassword.getText().toString();
 
         Intent intent = getIntent();
         objUsuarioLogado = (UsuarioEO) intent.getSerializableExtra("UsuarioEO");
@@ -132,7 +149,7 @@ public class PrincipalActivity extends Activity {
             public void onClick(View v) {
                 try {
 
-                    Intent intent = new Intent(PrincipalActivity.this, ContagemActivity.class);
+                    final Intent intent = new Intent(PrincipalActivity.this, ContagemActivity.class);
                     intent.putExtra("UsuarioEO", objUsuarioLogado);
                     getIntent().getSerializableExtra("UsuarioEO");
 
@@ -142,7 +159,30 @@ public class PrincipalActivity extends Activity {
                     intent.putExtra("TIPO_ATIVIDADE", ATIVIDADE_FINAL);
                     getIntent().getSerializableExtra("TIPO_ATIVIDADE");
 
-                    startActivity(intent);
+                    dialog.show();
+
+                    btnEntrar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            UsuarioLiderBC dao = new UsuarioLiderBC(PrincipalActivity.this);
+
+                            if (!etUser.getText().toString().equals("") || !etPassword.getText().toString().equals("")) {
+                                if (dao.existeUsuarioLider(etUser.getText().toString(), etPassword.getText().toString())) {
+                                    limparCampos();
+                                    dialog.dismiss();
+                                    startActivity(intent);
+                                } else {
+                                    limparCampos();
+                                    Toast.makeText(PrincipalActivity.this, "Usuário e senha incorretos", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(PrincipalActivity.this, "Preencha os Campos", Toast.LENGTH_SHORT).show();
+                            }
+
+
+                        }
+                    });
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -154,7 +194,7 @@ public class PrincipalActivity extends Activity {
             public void onClick(View v) {
                 try {
 
-                    Intent intent = new Intent(PrincipalActivity.this, ContagemActivity.class);
+                    final Intent intent = new Intent(PrincipalActivity.this, ContagemActivity.class);
                     intent.putExtra("UsuarioEO", objUsuarioLogado);
                     getIntent().getSerializableExtra("UsuarioEO");
 
@@ -163,8 +203,28 @@ public class PrincipalActivity extends Activity {
 
                     intent.putExtra("TIPO_ATIVIDADE", ATIVIDADE_AUDITORIA);
                     getIntent().getSerializableExtra("TIPO_ATIVIDADE");
+                    dialog.show();
 
-                    startActivity(intent);
+                    btnEntrar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            UsuarioLiderBC dao = new UsuarioLiderBC(PrincipalActivity.this);
+
+                            if (!etUser.getText().toString().equals("") || !etPassword.getText().toString().equals("")) {
+                                if (dao.existeUsuarioLider(etUser.getText().toString(), etPassword.getText().toString())) {
+                                    limparCampos();
+                                    dialog.dismiss();
+                                    startActivity(intent);
+                                } else {
+                                    limparCampos();
+                                    Toast.makeText(PrincipalActivity.this, "Usuário e senha incorretos", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                Toast.makeText(PrincipalActivity.this, "Preencha os Campos", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -176,7 +236,7 @@ public class PrincipalActivity extends Activity {
             public void onClick(View v) {
                 try {
 
-                    Intent intent = new Intent(PrincipalActivity.this, ContagemActivity.class);
+                    final Intent intent = new Intent(PrincipalActivity.this, ContagemActivity.class);
                     intent.putExtra("UsuarioEO", objUsuarioLogado);
                     getIntent().getSerializableExtra("UsuarioEO");
 
@@ -186,7 +246,27 @@ public class PrincipalActivity extends Activity {
                     intent.putExtra("TIPO_ATIVIDADE", ATIVIDADE_DIVERGENCIA);
                     getIntent().getSerializableExtra("TIPO_ATIVIDADE");
 
-                    startActivity(intent);
+                    dialog.show();
+
+                    btnEntrar.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            UsuarioLiderBC dao = new UsuarioLiderBC(PrincipalActivity.this);
+
+                            if(!etUser.getText().toString().equals("") || !etPassword.getText().toString().equals("")) {
+                                if (dao.existeUsuarioLider(etUser.getText().toString(), etPassword.getText().toString())) {
+                                    limparCampos();
+                                    dialog.dismiss();
+                                    startActivity(intent);
+                                } else {
+                                    limparCampos();
+                                    Toast.makeText(PrincipalActivity.this, "Usuário e senha incorretos", Toast.LENGTH_SHORT).show();
+                                }
+                            }else{
+                                Toast.makeText(PrincipalActivity.this, "Preencha os Campos", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
 
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -217,13 +297,18 @@ public class PrincipalActivity extends Activity {
         protected Void doInBackground(Void... params) {
             Log.i("Response", "doInBackground");
             setContagem();
+
             return null;
         }
 
         @Override
         protected void onPostExecute(Void result) {
             Log.i("Response", "onPostExecute");
-            Toast.makeText(getApplicationContext(), StringUtils.EXPORT_OK, Toast.LENGTH_LONG).show();
+            if (VerificaConexao.isNetworkConnected(PrincipalActivity.this)) {
+                Toast.makeText(getApplicationContext(), StringUtils.EXPORT_OK, Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Itens não enviados, conecte-se a uma rede", Toast.LENGTH_SHORT).show();
+            }
             verificaPendentes();
             this.dialog.dismiss();
         }
@@ -234,7 +319,7 @@ public class PrincipalActivity extends Activity {
         final String SOAP_ACTION = "http://tempuri.org/PutFile";
         final String METHOD_NAME = "PutFile";
         final String NAMESPACE = "http://tempuri.org/";
-        final String URL = "http://"+StringUtils.SERVIDOR+"/"+StringUtils.DIRETORIO_VIRTUAL+"/wsproduto.asmx";
+        final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
 
         // Create request
         SoapObject request = new SoapObject(NAMESPACE, METHOD_NAME);
@@ -242,7 +327,7 @@ public class PrincipalActivity extends Activity {
         SimpleDateFormat sdf = new SimpleDateFormat("ddMMyyyyHHmmss");
         String data = sdf.format(new Date());
         request.addProperty("buffer", CriarArquivoContagem());
-        request.addProperty("filename", data+".txt");
+        request.addProperty("filename", data + ".txt");
 
 
         SoapSerializationEnvelope envelope = new SoapSerializationEnvelope(SoapEnvelope.VER11);
@@ -261,9 +346,10 @@ public class PrincipalActivity extends Activity {
             // Invoke web service
             androidHttpTransport.call(SOAP_ACTION, envelope);
 
+            ColetaBC repository = new ColetaBC(this);
+            repository.UpdateColetaExportInventario(String.valueOf(objInventario.getIdInventario()));
+
         } catch (Exception e) {
-            //Assign Error Status true in static variable 'errored'
-            //LoginActivity.errored = true;
             e.printStackTrace();
         }
     }
@@ -316,7 +402,7 @@ public class PrincipalActivity extends Activity {
     private void verificaPendentes() {
         try {
             ColetaBC repository = new ColetaBC(this);
-            List<ColetaEO> objColetaList = new ArrayList<ColetaEO>();
+            List<ColetaEO> objColetaList;
 
             objColetaList = repository.GetColetaPendente(String.valueOf(objInventario.getIdInventario()));
 
@@ -373,12 +459,12 @@ public class PrincipalActivity extends Activity {
                                 c.getProperty(4) + ";" +
                                 c.getProperty(7) + ";" +
                                 c.getProperty(16) + ";" +
-                                c.getProperty(12)+"\n";
+                                c.getProperty(12) + "\n";
                 fosExt.write(linha.getBytes());
 
             }
             fosExt.close();
-            data= new byte[(int) fileExt.length()];
+            data = new byte[(int) fileExt.length()];
 
             inputStream = new FileInputStream(fileExt);
             inputStream.read(data);
@@ -699,5 +785,10 @@ public class PrincipalActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void limparCampos() {
+        etPassword.setText("");
+        etUser.setText("");
     }
 }

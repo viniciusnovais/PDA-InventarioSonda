@@ -9,7 +9,7 @@ public class ContagemColetorEO implements KvmSerializable{
     public int Inventario;
     public String CodigoBarra;
     public String CodigoProduto;
-    public int QtdeContagem;
+    public float QtdeContagem;
     public String Endereco; 
     public int Usuario;
     public int Atividade;
@@ -118,7 +118,7 @@ public class ContagemColetorEO implements KvmSerializable{
 			CodigoProduto = value.toString();
 			break;
 		case 3:
-			QtdeContagem = Integer.parseInt(value.toString());
+			QtdeContagem = Float.parseFloat(value.toString());
 			break;
 		case 4:
 			Endereco = value.toString();

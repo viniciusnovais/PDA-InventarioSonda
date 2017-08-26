@@ -46,8 +46,7 @@ public class ProdutoBC {
             for (int i = 0; i < produtoList.size(); i++) {
                 statement.clearBindings();
                 statement.bindString(2, produtoList.get(i).getCodSku());
-                statement.bindString(3, produtoList
-                        .get(i).getCodAutomacao());
+                statement.bindString(3, produtoList.get(i).getCodAutomacao());
                 statement.bindString(4, produtoList.get(i).getDescSku());
                 statement.bindDouble(5, produtoList.get(i).getPreco());
                 statement.execute();
@@ -90,7 +89,7 @@ public class ProdutoBC {
                         statement.bindString(2, fileProd[2].toString());//DES
                         statement.bindString(3, fileProd[1].toString());
                         statement.bindString(4, fileProd[4].toString());
-                        statement.bindDouble(5, Double.parseDouble(fileProd[3]));
+                        statement.bindString(5, fileProd[3].toString());
 
                         statement.execute();
                     } catch (Exception e) {
@@ -153,11 +152,36 @@ public class ProdutoBC {
             String[] args = {codeEAN};
             Cursor cursor = bd.query("PDA_TB_PRODUTO", null, "EAN = ?", args, null, null, null);
             while (cursor.moveToNext()) {
-                objProduto.setIdProduto(cursor.getInt(0));
-                objProduto.setCodSku(cursor.getString(0));
-                objProduto.setCodAutomacao(cursor.getString(2));
-                objProduto.setDescSku(cursor.getString(3));
-                objProduto.setPreco(cursor.getInt(4));
+                objProduto.setIdProduto(cursor.getInt(cursor.getColumnIndex("COD_PRODUTO")));
+                objProduto.setCodSku(cursor.getString(cursor.getColumnIndex("COD_PRODUTO")));
+                objProduto.setCodAutomacao(cursor.getString(cursor.getColumnIndex("EAN")));
+                objProduto.setDescSku(cursor.getString(cursor.getColumnIndex("DESC_PRODUTO")));
+                objProduto.setPreco(cursor.getInt(cursor.getColumnIndex("PRECO")));
+            }
+            cursor.close();
+
+            return objProduto;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            this.CloseConnection();
+        }
+    }
+
+    public ProdutoEO GetProdByPPV(String codePPV) {
+        try {
+            this.OpenConnection();
+
+            ProdutoEO objProduto = new ProdutoEO();
+            String[] args = {codePPV};
+            Cursor cursor = bd.query("PDA_TB_PRODUTO", null, "PPV = ?", args, null, null, null);
+            while (cursor.moveToNext()) {
+                objProduto.setIdProduto(cursor.getInt(cursor.getColumnIndex("COD_PRODUTO")));
+                objProduto.setCodSku(cursor.getString(cursor.getColumnIndex("COD_PRODUTO")));
+                objProduto.setCodAutomacao(cursor.getString(cursor.getColumnIndex("EAN")));
+                objProduto.setDescSku(cursor.getString(cursor.getColumnIndex("DESC_PRODUTO")));
+                objProduto.setPreco(cursor.getInt(cursor.getColumnIndex("PRECO")));
             }
             cursor.close();
 
