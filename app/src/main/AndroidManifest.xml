@@ -32,10 +32,12 @@
             android:label="@string/app_name"></activity>
         <activity
             android:name="com.pda.inventario.AutorizacaoActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name"
+            android:screenOrientation="portrait"></activity>
         <activity
             android:name="com.pda.inventario.ContagemActivity"
-            android:label="@string/title_activity_contagem"></activity>
+            android:label="@string/title_activity_contagem"
+            android:screenOrientation="portrait"></activity>
 
         <activity android:name="com.pda.inventario.MainActivity"></activity>
 

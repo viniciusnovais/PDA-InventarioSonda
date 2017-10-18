@@ -4,16 +4,28 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_disabled.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_pressed.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
-    },
-    {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_focused.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_focused.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_disabled.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_pressed.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_normal.9.png",
@@ -28,36 +40,140 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_pressed.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_pressed.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_focused.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_disabled.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_disabled.9.png"
-    },
-    {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_pressed.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_pressed.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_pressed.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_disabled.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_disabled.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_focused.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_focused.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_disabled.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_disabled.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_disabled.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_disabled.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_disabled.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_disabled.9.png"
     },
     {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_disabled.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_focused.9.png"
+    },
+    {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_pressed.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_pressed.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_pressed.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_normal.9.png",
@@ -72,6 +188,14 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_focused.9.png"
     },
     {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_dark_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_pressed.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_pressed.9.png"
+    },
+    {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_focused.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_focused.9.png"
     },
@@ -84,16 +208,16 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_focused.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_normal.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_normal.9.png"
-    },
-    {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_normal.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_focused.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_focused.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_dark_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_dark_focused.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_light_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_light_normal.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_normal.9.png",
@@ -104,8 +228,8 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_focused.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_light_pressed.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_light_pressed.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_normal.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_pressed.9.png",
@@ -116,15 +240,19 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_focused.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_pressed.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_pressed.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_normal.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_normal.9.png"
     },
     {
-        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_text_dark_disabled.9.png",
-        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_text_dark_disabled.9.png"
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_plus_signin_btn_icon_light_disabled.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_plus_signin_btn_icon_light_disabled.9.png"
     },
     {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_icon_light_normal.9.png",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_icon_light_normal.9.png"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\drawable-tvdpi\\common_google_signin_btn_text_dark_focused.9.png",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\fa282f58bc0dd3453c4040a85da55aa97163f57e\\output\\res\\drawable-tvdpi\\common_google_signin_btn_text_dark_focused.9.png"
     }
 ]

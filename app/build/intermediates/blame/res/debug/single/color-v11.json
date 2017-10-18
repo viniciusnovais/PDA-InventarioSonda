@@ -4,7 +4,15 @@
         "source": "C:\\Users\\PDA\\.android\\build-cache\\c6fef2e205e631560a3dfc5e41aa4ad09892848d\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
     },
     {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_dark.xml",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\c6fef2e205e631560a3dfc5e41aa4ad09892848d\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_dark.xml"
+    },
+    {
         "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-Inventario1\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
+        "source": "C:\\Users\\PDA\\.android\\build-cache\\c6fef2e205e631560a3dfc5e41aa4ad09892848d\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
+    },
+    {
+        "merged": "C:\\Users\\PDA\\AndroidStudioProjects\\PDA-InventarioSonda\\app\\build\\intermediates\\res\\merged\\debug\\color-v11\\abc_background_cache_hint_selector_material_light.xml",
         "source": "C:\\Users\\PDA\\.android\\build-cache\\c6fef2e205e631560a3dfc5e41aa4ad09892848d\\output\\res\\color-v11\\abc_background_cache_hint_selector_material_light.xml"
     }
 ]
