@@ -174,7 +174,10 @@ public class ProdutoBC {
             this.OpenConnection();
 
             ProdutoEO objProduto = new ProdutoEO();
-            String[] args = {codePPV};
+            //estou convertando a string para inteiro, pq na busca por ppv ele ta levando os zeros a esquerda e ta vindo do serviço
+            //sem os zeros a esquerda. Então eu transformo a string em int(oq fará perder os zeros a esquerda, dps eu volto para string novamente).
+            int auxPPV = Integer.parseInt(codePPV);
+            String[] args = {String.format("%d", auxPPV)};
             Cursor cursor = bd.query("PDA_TB_PRODUTO", null, "PPV = ?", args, null, null, null);
             while (cursor.moveToNext()) {
                 objProduto.setIdProduto(cursor.getInt(cursor.getColumnIndex("COD_PRODUTO")));

@@ -24,6 +24,7 @@ import com.pda.inventario.businessComponent.ColetaBC;
 import com.pda.inventario.businessComponent.EnderecoBC;
 import com.pda.inventario.businessComponent.ProdutoBC;
 import com.pda.inventario.businessComponent.UsuarioColetorBC;
+import com.pda.inventario.businessComponent.UsuarioLiderBC;
 import com.pda.inventario.entityObject.ColetaEO;
 import com.pda.inventario.entityObject.ContagemColetorEO;
 import com.pda.inventario.entityObject.EnderecoColetorEO;
@@ -35,17 +36,21 @@ import com.pda.inventario.entityObject.UsuarioEO;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.InputType;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethod;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
@@ -58,12 +63,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ContagemActivity extends Activity {
-    private AlertDialog alerta, dialog;
+    private AlertDialog alerta, dialog, dialogLogin;
     private String CURRENT_SELECTION, NEW_SELECTION;
     private int iCurrentSelection, countTentativa = 0, TIPO_ATIVIDADE = 0;
-    private EditText etEndProd, etLoginLider, etPasswordLider, etQuantidade;
+    private EditText etEndProd, etLoginLider, etPasswordLider, etQuantidade, etPassword, etUser;
     private TextView tvEndereco, tvDepartamento, tvSetor, tvProdDetail, tvTitulo;
-    private Button btnFechar, btnLoginLider, btnOkMult, btnExcluir, btnZerar;
+    private Button btnFechar, btnLoginLider, btnOkMult, btnExcluir, btnZerar, btnEntrar;
     private ImageView btnProcurar;
     private ListView lvColeta;
     private Spinner spinMetodoContagem;
@@ -86,9 +91,16 @@ public class ContagemActivity extends Activity {
         objInventarioCorrente = (InventarioEO) intent.getSerializableExtra("InventarioEO");
         TIPO_ATIVIDADE = Integer.parseInt(intent.getSerializableExtra("TIPO_ATIVIDADE").toString());
 
-
         etEndProd = (EditText) findViewById(R.id.etEndProd);
         etEndProd.requestFocus();
+        etEndProd.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                InputMethodManager keyboard = (InputMethodManager)
+                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.showSoftInput(etEndProd, 0);
+            }
+        }, 200);
         etEndProd.setText("");
 
         getWindow().setSoftInputMode(
@@ -149,6 +161,7 @@ public class ContagemActivity extends Activity {
             public void onClick(View v) {
                 if (!etEndProd.getText().toString().equals("")) {
                     validaColeta();
+
                 } else {
                     Toast.makeText(ContagemActivity.this, StringUtils.BLANK_FIELD, Toast.LENGTH_SHORT).show();
                 }
@@ -161,6 +174,7 @@ public class ContagemActivity extends Activity {
                         (keyCode == KeyEvent.KEYCODE_ENTER)) {
                     if (!etEndProd.getText().toString().equals("")) {
                         validaColeta();
+
                     } else {
                         Toast.makeText(ContagemActivity.this, StringUtils.BLANK_FIELD, Toast.LENGTH_SHORT).show();
                     }
@@ -179,6 +193,17 @@ public class ContagemActivity extends Activity {
                     } else {
                         fecharVerificacao();
                     }
+                    etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                    etEndProd.requestFocus();
+                    etEndProd.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            InputMethodManager keyboard = (InputMethodManager)
+                                    getSystemService(Context.INPUT_METHOD_SERVICE);
+                            keyboard.showSoftInput(etEndProd, 0);
+                        }
+                    }, 200);
+                    etEndProd.setText("");
                 } else {
                     Toast.makeText(ContagemActivity.this, StringUtils.COLET_ZERO, Toast.LENGTH_SHORT).show();
                     AlertDialog.Builder builder = new AlertDialog.Builder(ContagemActivity.this);
@@ -187,10 +212,22 @@ public class ContagemActivity extends Activity {
                         public void onClick(DialogInterface dialog, int which) {
                             EnderecoBC e = new EnderecoBC(ContagemActivity.this);
                             enderecoFlag = objEndAberto.Endereco;
+                            objEndAberto.IdEndereco = "";
                             e.UpdateFlagFechaEndereco(enderecoFlag);
                             tvEndereco.setText(StringUtils.END);
                             tvDepartamento.setText(StringUtils.DPTO);
                             tvSetor.setText(StringUtils.SETOR);
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                            etEndProd.requestFocus();
+                            etEndProd.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    InputMethodManager keyboard = (InputMethodManager)
+                                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                                    keyboard.showSoftInput(etEndProd, 0);
+                                }
+                            }, 200);
+                            etEndProd.setText("");
                             dialog.dismiss();
                         }
                     }).setNegativeButton("Não", new DialogInterface.OnClickListener() {
@@ -365,7 +402,26 @@ public class ContagemActivity extends Activity {
 
                     if (objEndAberto.IdEndereco.equals("")) {
                         Toast.makeText(ContagemActivity.this, StringUtils.END_NOK, Toast.LENGTH_SHORT).show();
+                        if (!enderecoFlag.equals("")) {
+                            etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        } else {
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+                        if (!enderecoFlag.equals("")) {
+                            etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        } else {
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
                         etEndProd.requestFocus();
+                        etEndProd.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                InputMethodManager keyboard = (InputMethodManager)
+                                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                                keyboard.showSoftInput(etEndProd, 0);
+                            }
+                        }, 200);
                         etEndProd.setText("");
                         return false;
                     } else {
@@ -390,6 +446,8 @@ public class ContagemActivity extends Activity {
         ProdutoEO objProduto = new ProdutoEO();
 
         try {
+
+            //ppv
             if (etEndProd.getText().toString().length() == 13 && etEndProd.getText().toString().substring(0, 1).equals("2")) {
 
                 String ppv = etEndProd.getText().toString().substring(1, 5);
@@ -401,13 +459,27 @@ public class ContagemActivity extends Activity {
                     objProduto.setColeta(quantidade);
                     objProdutoList.add(objProduto);
                     this.insertColeta(objProduto);
-                    spinMetodoContagem.setSelection(0);
+                    spinMetodoContagem.setSelection(1);
                     iCurrentSelection = spinMetodoContagem.getSelectedItemPosition();
                     CURRENT_SELECTION = spinMetodoContagem.getSelectedItem().toString();
                 } else {
                     Toast.makeText(ContagemActivity.this, StringUtils.PROD_NOK, Toast.LENGTH_SHORT).show();
+
+                    if (!enderecoFlag.equals("")) {
+                        etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    } else {
+                        etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                    }
+
                     etEndProd.requestFocus();
-                    etEndProd.setText("");
+                    etEndProd.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            InputMethodManager keyboard = (InputMethodManager)
+                                    getSystemService(Context.INPUT_METHOD_SERVICE);
+                            keyboard.showSoftInput(etEndProd, 0);
+                        }
+                    }, 200);
                     return false;
                 }
 
@@ -420,8 +492,22 @@ public class ContagemActivity extends Activity {
 
                     if (objProduto.getCodSku() == null) {
                         Toast.makeText(ContagemActivity.this, StringUtils.PROD_NOK, Toast.LENGTH_SHORT).show();
+
+                        if (!enderecoFlag.equals("")) {
+                            etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        } else {
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
                         etEndProd.requestFocus();
-                        etEndProd.setText("");
+                        etEndProd.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                InputMethodManager keyboard = (InputMethodManager)
+                                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                                keyboard.showSoftInput(etEndProd, 0);
+                            }
+                        }, 200);
                         return false;
                     } else {
                         if (spinMetodoContagem.getSelectedItemPosition() == 0 || spinMetodoContagem.getSelectedItemPosition() == 2) {
@@ -500,7 +586,21 @@ public class ContagemActivity extends Activity {
                     iCurrentSelection = spinMetodoContagem.getSelectedItemPosition();
                     CURRENT_SELECTION = spinMetodoContagem.getSelectedItem().toString();
 
+                    if (!enderecoFlag.equals("")) {
+                        etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    } else {
+                        etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                    }
+
                     etEndProd.requestFocus();
+                    etEndProd.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            InputMethodManager keyboard = (InputMethodManager)
+                                    getSystemService(Context.INPUT_METHOD_SERVICE);
+                            keyboard.showSoftInput(etEndProd, 0);
+                        }
+                    }, 200);
                     etEndProd.setText("");
                 }
             } else {
@@ -511,9 +611,26 @@ public class ContagemActivity extends Activity {
                         Toast.makeText(ContagemActivity.this, StringUtils.PROD_OK, Toast.LENGTH_SHORT).show();
                         this.populaListViewColeta();
 
+                        if (!enderecoFlag.equals("")) {
+                            etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        } else {
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
                         etEndProd.requestFocus();
+                        etEndProd.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                InputMethodManager keyboard = (InputMethodManager)
+                                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                                keyboard.showSoftInput(etEndProd, 0);
+                            }
+                        }, 200);
                         etEndProd.setText("");
                     }
+                } else {
+                    popupAutorizaLider(etEndProd.getText().toString());
+                    etEndProd.setText("");
                 }
             }
         }
@@ -791,19 +908,37 @@ public class ContagemActivity extends Activity {
             if (etQuantidade.getText().toString().equals("") || etQuantidade.getText().toString().equals("0")) {
                 Toast.makeText(getApplicationContext(), StringUtils.BLANK_FIELD_ZERO, Toast.LENGTH_SHORT).show();
             } else {
-                prod.setColeta(Float.parseFloat(etQuantidade.getText().toString()));
-                objProdutoList.add(prod);
-                insertColeta(prod);
+                if (Float.parseFloat(etQuantidade.getText().toString()) > (float) enderecoBC.qtdeMax(objEndAberto.Endereco)) {
+                    popupAutorizaLiderValorMaior(prod);
+                } else {
+                    prod.setColeta(Float.parseFloat(etQuantidade.getText().toString()));
+                    objProdutoList.add(prod);
+                    insertColeta(prod);
 
-                tvProdDetail.setText(StringUtils.PROD + objProdutoList.get(objProdutoList.size() - 1).getDescSku());
+                    tvProdDetail.setText(StringUtils.PROD + objProdutoList.get(objProdutoList.size() - 1).getDescSku());
 
-                Toast.makeText(ContagemActivity.this, StringUtils.PROD_OK, Toast.LENGTH_SHORT).show();
-                populaListViewColeta();
+                    Toast.makeText(ContagemActivity.this, StringUtils.PROD_OK, Toast.LENGTH_SHORT).show();
+                    populaListViewColeta();
 
-                etEndProd.requestFocus();
-                etEndProd.setText("");
+                    if (!enderecoFlag.equals("")) {
+                        etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                    } else {
+                        etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                    }
 
-                alerta.dismiss();
+                    etEndProd.requestFocus();
+                    etEndProd.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            InputMethodManager keyboard = (InputMethodManager)
+                                    getSystemService(Context.INPUT_METHOD_SERVICE);
+                            keyboard.showSoftInput(etEndProd, 0);
+                        }
+                    }, 200);
+                    etEndProd.setText("");
+
+                    alerta.dismiss();
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -818,6 +953,16 @@ public class ContagemActivity extends Activity {
             etQuantidade = (EditText) view.findViewById(R.id.etColetaMult);
             btnOkMult = (Button) view.findViewById(R.id.btnEntrarMult);
             final ProdutoEO prod = objProduto;
+
+            etQuantidade.requestFocus();
+            etQuantidade.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    InputMethodManager keyboard = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    keyboard.showSoftInput(etQuantidade, 0);
+                }
+            }, 200);
 
             btnOkMult.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View arg0) {
@@ -877,6 +1022,7 @@ public class ContagemActivity extends Activity {
             showResult(resultString);
             this.dialog.dismiss();
         }
+
     }
 
     public void showResult(String result) {
@@ -947,8 +1093,23 @@ public class ContagemActivity extends Activity {
                         countTentativa = 0;
                         repository.deleteColetaEnd(String.valueOf(objEndAberto.IdEndereco));
                         alerta.dismiss();
-                        etEndProd.setText("");
+
+                        if (!enderecoFlag.equals("")) {
+                            etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        } else {
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
                         etEndProd.requestFocus();
+                        etEndProd.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                InputMethodManager keyboard = (InputMethodManager)
+                                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                                keyboard.showSoftInput(etEndProd, 0);
+                            }
+                        }, 200);
+                        etEndProd.setText("");
                         lvColeta.setAdapter(null);
                         objProdutoList = new ArrayList<ProdutoEO>();
                         tvProdDetail.setText(StringUtils.PROD);
@@ -971,12 +1132,22 @@ public class ContagemActivity extends Activity {
             etQuantidade = (EditText) view.findViewById(R.id.etColetaMult);
             btnOkMult = (Button) view.findViewById(R.id.btnEntrarMult);
 
+            etQuantidade.requestFocus();
+            etQuantidade.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    InputMethodManager keyboard = (InputMethodManager)
+                            getSystemService(Context.INPUT_METHOD_SERVICE);
+                    keyboard.showSoftInput(etQuantidade, 0);
+                }
+            }, 200);
 
             btnOkMult.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View arg0) {
                     validaFecharEndMult(repositoryColeta);
                 }
             });
+
 
             etQuantidade.setOnKeyListener(new EditText.OnKeyListener() {
                 public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -998,5 +1169,110 @@ public class ContagemActivity extends Activity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+
+    private void popupAutorizaLider(final String codProduto) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View v = View.inflate(this, R.layout.view_login_autorizacao, null);
+        etUser = (EditText) v.findViewById(R.id.etUser);
+        etPassword = (EditText) v.findViewById(R.id.etPassword);
+        btnEntrar = (Button) v.findViewById(R.id.btnEntrar);
+        builder.setView(v);
+        dialogLogin = builder.create();
+        dialogLogin.show();
+
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UsuarioLiderBC dao = new UsuarioLiderBC(ContagemActivity.this);
+
+                if (!etUser.getText().toString().equals("") || !etPassword.getText().toString().equals("")) {
+                    if (dao.existeUsuarioLider(etUser.getText().toString(), etPassword.getText().toString())) {
+                        etUser.setText("");
+                        etUser.setText("");
+
+                        ProdutoEO p = new ProdutoEO();
+
+                        p.setCodSku(codProduto);
+                        p.setDescSku("Produto não cadastrado");
+
+                        dialogLogin.dismiss();
+
+                        contagemMult(p);
+
+                    } else {
+                        etUser.setText("");
+                        etPassword.setText("");
+                        Toast.makeText(ContagemActivity.this, "Usuário e senha incorretos", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ContagemActivity.this, "Preencha os Campos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    private void popupAutorizaLiderValorMaior(final ProdutoEO prod) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        View v = View.inflate(this, R.layout.view_login_autorizacao, null);
+        etUser = (EditText) v.findViewById(R.id.etUser);
+        etPassword = (EditText) v.findViewById(R.id.etPassword);
+        btnEntrar = (Button) v.findViewById(R.id.btnEntrar);
+        builder.setView(v);
+        dialogLogin = builder.create();
+        dialogLogin.show();
+
+        btnEntrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UsuarioLiderBC dao = new UsuarioLiderBC(ContagemActivity.this);
+
+                if (!etUser.getText().toString().equals("") || !etPassword.getText().toString().equals("")) {
+                    if (dao.existeUsuarioLider(etUser.getText().toString(), etPassword.getText().toString())) {
+                        etUser.setText("");
+                        etUser.setText("");
+
+                        prod.setColeta(Float.parseFloat(etQuantidade.getText().toString()));
+                        objProdutoList.add(prod);
+                        insertColeta(prod);
+
+                        tvProdDetail.setText(StringUtils.PROD + objProdutoList.get(objProdutoList.size() - 1).getDescSku());
+                        etQuantidade.setText("");
+
+                        Toast.makeText(ContagemActivity.this, StringUtils.PROD_OK, Toast.LENGTH_SHORT).show();
+                        populaListViewColeta();
+
+                        if (!enderecoFlag.equals("")) {
+                            etEndProd.setInputType(InputType.TYPE_CLASS_NUMBER);
+                        } else {
+                            etEndProd.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                        etEndProd.requestFocus();
+                        etEndProd.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                InputMethodManager keyboard = (InputMethodManager)
+                                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                                keyboard.showSoftInput(etEndProd, 0);
+                            }
+                        }, 200);
+                        etEndProd.setText("");
+
+                        alerta.dismiss();
+
+                        dialogLogin.dismiss();
+
+                    } else {
+                        etUser.setText("");
+                        etUser.setText("");
+                        Toast.makeText(ContagemActivity.this, "Usuário e senha incorretos", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(ContagemActivity.this, "Preencha os Campos", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 }

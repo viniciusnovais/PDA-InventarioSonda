@@ -76,6 +76,9 @@ import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.os.SystemClock;
 import android.util.Base64;
 import android.util.Log;
@@ -90,6 +93,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
     private final AutorizacaoBC repository = new AutorizacaoBC(this);
     private ProgressDialog dialogLimpar;
     private List<String> fileNameList = new ArrayList<String>();
+    private Handler mHandler;
 
     UsuarioEO objUsuarioLogado = new UsuarioEO();
     InventarioEO objInventario = new InventarioEO();
@@ -126,7 +130,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         btnConf = (Button) findViewById(R.id.btnConfig);
 
         etAutorizacao = (EditText) findViewById(R.id.etAutorizacao);
-        //etAutorizacao.setText("72826018");
+//        etAutorizacao.setText("74308449");
 
         dialogLimpar = new ProgressDialog(AutorizacaoActivity.this);
 
@@ -248,10 +252,6 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
             resultCall = getInventory(etAutorizacao.getText().toString());
 
-//            for (int i = 0; i < count; i++) {
-//                publishProgress(i);
-//            }
-
 
             return null;
         }
@@ -259,7 +259,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         @Override
         protected void onProgressUpdate(Integer... values) {
             super.onProgressUpdate(values);
-            //dialog.setProgress(values[0]);
+
 
         }
 
@@ -334,6 +334,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
         } catch (Exception e) {
             e.printStackTrace();
+            displayExceptionMessage("Erro ao importar inventário. Mensagem:" + e.getMessage());
             return e.getMessage();
         }
     }
@@ -708,6 +709,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
         } catch (Exception e) {
             e.printStackTrace();
+            displayExceptionMessage("Erro ao importar endereço. Mensagem:" + e.getMessage());
         }
     }
 
@@ -719,6 +721,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         final String NAMESPACE = "http://tempuri.org/";
         //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
         final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsproduto.asmx";
+
 
         List<ControleArquivoEO> objControleArquivoList = new ArrayList<ControleArquivoEO>();
         try {
@@ -752,6 +755,7 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
         } catch (Exception e) {
             e.printStackTrace();
+            displayExceptionMessage("Erro ao importar produto. Mensagem:" + e.getMessage());
             return null;
         }
 
@@ -858,8 +862,11 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
         } catch (Exception e) {
             e.printStackTrace();
+            displayExceptionMessage("Erro ao importar produto. Mensagem: " + e.getMessage());
+
         }
     }
+
 
     public List<String> unzip(List<ControleArquivoEO> objControleArquivoList, String location) {
         String zipFile;
@@ -975,11 +982,13 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
 
     public void GetUsuario() {
 
-        final String SOAP_ACTION = "http://tempuri.org/ListaLider ";
-        final String METHOD_NAME = "ListaLider ";
+        final String SOAP_ACTION = "http://tempuri.org/ListaLider";
+        final String METHOD_NAME = "ListaLider";
         final String NAMESPACE = "http://tempuri.org/";
         //final String URL = "http://179.184.159.52/wsandroid/wsinventario.asmx";
         final String URL = "http://" + StringUtils.SERVIDOR + "/" + StringUtils.DIRETORIO_VIRTUAL + "/wsautenticacao.asmx";
+        List<UsuarioLiderEO> lista = new ArrayList<>();
+        UsuarioLiderBC usuarioLiderBC = new UsuarioLiderBC(AutorizacaoActivity.this);
 
         try {
 
@@ -995,11 +1004,9 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
             transport.call(SOAP_ACTION, soapEnvelope);
 
             SoapObject objSoapList = (SoapObject) soapEnvelope.getResponse();
-            SoapObject item;
-            List<UsuarioLiderEO> lista = new ArrayList<>();
-            UsuarioLiderBC usuarioLiderBC = new UsuarioLiderBC(AutorizacaoActivity.this);
+
             for (int i = 0; i < objSoapList.getPropertyCount(); i++) {
-                item = (SoapObject) objSoapList.getProperty(i);
+                SoapObject item = (SoapObject) objSoapList.getProperty(i);
                 UsuarioLiderEO usuarioLiderEO = new UsuarioLiderEO();
 
                 usuarioLiderEO.setLogin(item.getProperty("Login").toString());
@@ -1016,4 +1023,12 @@ public class AutorizacaoActivity extends AbsRuntimePermission {
         }
     }
 
+    private void displayExceptionMessage(final String msg) {
+        AutorizacaoActivity.this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(AutorizacaoActivity.this, "ERRO: " + msg, Toast.LENGTH_LONG).show();
+            }
+        });
+    }
 }

@@ -102,7 +102,7 @@ public class EnderecoBC {
 
             EnderecoColetorEO objEndereco = new EnderecoColetorEO();
             String[] args = {codeEndereco}, coluna = {"FLAG_VERIFICA_ENDERECO_FECHADO"};
-            Cursor cursor = bd.query("PDA_TB_ENDERECO",coluna, "COD_ENDERECO = ?", args, null, null, null);
+            Cursor cursor = bd.query("PDA_TB_ENDERECO", coluna, "COD_ENDERECO = ?", args, null, null, null);
             while (cursor.moveToNext()) {
 
                 objEndereco.verificaEnderecoFechado = cursor.getInt(cursor.getColumnIndex("FLAG_VERIFICA_ENDERECO_FECHADO"));
@@ -229,5 +229,28 @@ public class EnderecoBC {
                 e.printStackTrace();
             }
         }
+    }
+
+    public int qtdeMax(String codEnd) {
+
+        this.OpenConnection();
+
+        Cursor cursor = bd.rawQuery("SELECT QTDE_MAX_MULTIPLOS FROM PDA_TB_ENDERECO WHERE COD_ENDERECO = ?", new String[]{codEnd});
+
+        try {
+            bd.beginTransaction();
+            while (cursor.moveToNext()) {
+                return cursor.getInt(cursor.getColumnIndex("QTDE_MAX_MULTIPLOS"));
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            cursor.close();
+            bd.setTransactionSuccessful();
+            bd.endTransaction();
+        }
+
+        return 0;
     }
 }
